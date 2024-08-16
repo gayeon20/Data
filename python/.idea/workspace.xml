@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96441f47-c7a4-4517-8154-6965d260e69b" name="변경" comment="chore: Update baekjoon">
-      <change afterPath="$PROJECT_DIR$/baekjoon/조건문/1330_두_수_비교하기.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic/if_statement.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/basic/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docs/python_home.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/python_home.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/baekjoon/조건문/14681_사분면_고르기.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723801793603</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="chore: Update baekjoon">
+      <option name="closed" value="true" />
+      <created>1723803550389</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1723803550389</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,7 +148,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/main" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -160,5 +165,15 @@
     <MESSAGE value="rename: Rename baekjoon files" />
     <MESSAGE value="chore: Update baekjoon" />
     <option name="LAST_COMMIT_MESSAGE" value="chore: Update baekjoon" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/baekjoon/조건문/14681_사분면_고르기.py</url>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
