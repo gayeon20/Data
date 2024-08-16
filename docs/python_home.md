@@ -44,6 +44,15 @@ Python 의 제어문은 다른 언어의 `{ }` 대신 `:` 과 **들여쓰기**�
 | x in A | x 가 A 의 요소로 있으면 참 |
 | x not in A | x 가 A 의 요소가 아니면 참 |
 
+> [!NOTE] `in`
+> 
+> ```python
+> LIST = [1, 2, 3, 4]
+> print(2 in LIST) # 결과: True
+> ```
+> 
+> - 열거형 데이터에는 `in` 을 사용할 수 있다. 해당 데이터에 입력한 값이 존재하면 `True`, 이외에는 `False` 를 반환한다.
+
 ### 조건문 (Condition)
 
 #### `if`
@@ -369,11 +378,19 @@ print(b) # 결과: True
 #### Any
 - 반복 가능한 자료형의 모든 데이터에 대해 bool(x)가 True이면 True를 반환합니다. 이터러블이 비어 있으면 False를 반환합니다.
 
-## 컬렉션 자료형 (Collection Data Type)
+### 컬렉션 자료형 (Collection Data Type)
+- 여러 값을 저장하는 자료형입니다. 반복 가능한 자료형 (Iterable)이라고도 합니다.
 - 시퀀스 자료형과 비시퀀스 자료형이 있습니다.
 - 시퀀스 자료형은 문자열형, 리스트형, 튜플형이 있고 비시퀀스형 자료형은 세트형, 딕셔너리형이 있습니다.
 
-### 문자열 (String)
+#### 문자열 (String)
+
+```python
+hello = "Hello"
+world = "World"
+print(hello + world)
+```
+- 문자열끼리 덧셈을 실행하면 붙어있는 문자열이 출력됩니다.
 
 ```python
 s = "Hello"
@@ -395,7 +412,7 @@ print(string)
 여러 줄일 경우 `'''` 나 `"""` 로 감싸면 된다. 하지만 가독성이 떨어지므로 1 줄 씩 나타내는 것을 권장한다.
 
 
-#### 이스케이프 문자 (Escape String)
+##### 이스케이프 문자 (Escape String)
 - 원래 의미를 탈출하는 문자, 특수한 역할을 하는 문자를 의미한다
 - 예를 들어 "hello world"라는 따옴표까지 포함된 문장을 출력하고 싶을 때 print문 안에 입력하게 되면 기본으로 문장임을 타나내주는 따옴표가 있다. 하지만 이 따옴표는 출력되지 않고 hello world만 출력된다.
 
@@ -427,7 +444,7 @@ print(STRING)
 > 또한 하나의 파일에서는 한 종류의 따옴표만 일관되게 사용하는 것이 유지보수에 용이하다.
 
 
-#### `+` 연산자
+##### `+` 연산자
 
 ```python
 print("Hello," + "World") # 결과: "Hello, World"
@@ -439,7 +456,7 @@ print("Hey, " + ("Fighting! " * 3) ) # 결과: Hey, Fighting! Fighting! Fighting
 문자열에 `*` 를 사용하면 해당 문자열이 숫자만큼 반복된다.
 `()` 도 사용할 수 있다. 우선 순위는 숫자 연산의 `()` 와 같게 적용된다.
 
-#### 인덱스 (Index)
+##### 인덱스 (Index)
 ```python
 STRING = "Hello, World!"
 print(STRING[2]) # 결과: l
@@ -455,8 +472,207 @@ STRING[3:5] = "" # 결과: 에러 발생
 String 은 Immutable 타입이므로 Index 를 사용한 변경이 불가능하다.
 String 의 값을 변경하기 위해선 새로운 객체를 생성해야 한다.
 
-### 리스트 (List)
+##### 심화: 함수
+###### `len`
 
+```python
+print(len("Hello")) # 결과: 5
+```
+
+- `len(STRING)` 은 입력한 `STRING` 의 길이를 반환한다.
+
+###### `replace`
+
+```python
+# "A"를 "F"로 변환
+message.replace("A", "F")
+```
+
+- `replace(FROM, TO)` 는 문자열에 존재하는 `FROM` 을 `TO` 로 바꿔준다.
+- 문자열 내에 `FROM` 이 존재하지 않으면 오류가 발생한다.
+
+###### `join`
+
+```python
+# join()의 대상 문자열을 기준으로 합쳐준다.
+phone_number_segments = ["010","0000","1111"]
+print("-".join(phone_number_segments)) # 결과: "010-0000-1111"
+```
+
+- `join(TARGET)` 로 `TARGET` 의 구분자에 함수를 호출한 문자열을 삽입한다.
+
+###### `split`
+
+```python
+# '-' 기준으로 분리
+phone_number.split("-")
+
+# 공백을 기준으로 분리
+address.split()
+```
+
+- `split(seperator)` 은 `seperator` 를 기준으로 문자열을 분리할 때 사용한다.
+
+```python
+message = "Hello World"
+print(message.split(" "))
+# 결과: ["Hello", "World"]
+```
+- 분리한 결과는 List 의 형태로 반환된다.
+
+###### `with`
+
+```python
+a = "Python is easy!"
+print(a.startswith("Python")) # 결과: True
+print(a.endswith("!")) # 결과: True
+```
+
+- `startswith()` 은 대상이 입력한 문자열로 시작하는지 확인한다.
+- `endswith()` 은 대상이 입력한 문자열로 끝나는지 확인한다.
+
+###### `strip`
+
+```python
+message.strip()
+```
+
+- `strip()` 은 문자열 양 옆의 공백을 제거한다.
+- 문자열 중간의 공백은 그대로 남는다.
+
+###### Capitalize
+
+- `lower()` 는 영어를 모두 소문자로 변환한다.
+- `casefold()` `lower()` 메소드와 유사하지만, 더 강력한 소문자 변환 기능을 제공하여 다양한 언어에서의 문자 변환에 있어 더욱 일관된 결과를 보장합니다. [`casefold()`](vscode-file://vscode-app/c:/Users/skysk/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html "../../../.vscode/extensions/ms-python.vscode-pylance-2024.6.1/dist/typeshed-fallback/stdlib/builtins.pyi")는 문자열을 정규화하여 대소문자 구분 없이 문자열 비교를 수행할 때 유용하게 사용됩니다.
+  예를 들어, 일부 유럽 언어에서는 특정 대문자 문자가 두 개 이상의 소문자 문자로 변환될 수 있습니다. 이러한 경우, `lower()` 메소드보다 [`casefold()`](vscode-file://vscode-app/c:/Users/skysk/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html "../../../.vscode/extensions/ms-python.vscode-pylance-2024.6.1/dist/typeshed-fallback/stdlib/builtins.pyi") 메소드가 더 정확한 소문자 변환을 제공합니다.
+- `upper()` 는 영어를 모두 대문자로 변환한다.
+- `capitalize()` 는 앞 글자만 대문자로 바꾸고 나머지는 소문자로 바꾼다.
+
+###### Format
+
+> 이전의 `printf` 보다는 `str.format()` 의 사용을 권장한다. 3.6 버전 이상부터는 f 문자열이 더 간편하다.
+
+```python
+"Hello, {}!".format('Chris')
+```
+
+- 문자열 내에 `{}` 를 입력 후 `format()` 으로 값을 입력할 수 있다.
+- Python 에 추가된 f 문자열의 기능과 같다.
+
+**Index**
+
+```python
+name = "Chris"
+job = "PROGRAMMER"
+
+print("Good {1}, {0}.".format(name, job))
+```
+
+- 숫자로 Index 를 지정하면 그 위치에 입력된다.
+
+```python
+name = "Chris"
+job = "PROGRAMMER"
+
+print("Good {n}, {j}.".format(n=name, j=job))
+```
+
+- Index 는 문자도 사용할 수 있다.
+
+**Unpacking**
+
+```python
+print("{0} - {1} - {2}".format(*'ABC'))
+print("{0} - {1} - {2}".format(*['A', 'B', 'C']))
+```
+
+- `*` 로 언패킹하여 값을 입력할 수 있다.
+
+```python
+print("{0[0]} - {0[1]} - {0[2]}".format(['A', 'B', 'C']))
+print("{0[name]}".format({'name':'Chris', 'family-name':'Cho'}))
+```
+
+- List, Dictionary 등의 Collection 을 입력하고 Index `[]` 를 활용하는 것도 가능하다.
+
+**Sort**
+
+```python
+print('{:<20}'.format('좌측 정렬'))
+print('{:>20}'.format('우측 정렬'))
+print('{:^20}'.format('중앙 정렬'))
+print('{:%^20}'.format('중앙 정렬'))
+```
+
+- `:<` 으로 좌측 정렬을 할 수 있다.
+- `:>` 으로 우측 정렬을 할 수 있다.
+- `:^` 으로 중앙 정렬을 할 수 있다.
+- 숫자는 글자 수를 의미한다. `:` 뒤에 원하는 글자를 입력하면 정렬할 때 빈 공간을 해당 글자로 채울 수 있다.
+
+**Float**
+
+```python
+import math
+print('원주율의 크기는 대략 {:f} 입니다.'.format(math.pi))
+print('원주율의 크기는 대략 {:f} 입니다.'.format(math.pi))
+```
+
+- `f` 는 실수 타입을 의미한다.
+- `` 와 같이 `.` 과 숫자를 입력하면 해당 자릿수까지 반올림해서 나타낼 수 있다.
+
+```python
+print('{:+f}; {:+f}'.format(3.14, -3.14))
+print('{: f}; {: f}'.format(3.14, -3.14))
+print('{:-f}; {:-f}'.format(3.14, -3.14))
+```
+
+- `:+f` 와 같이 `+` 를 붙이면 숫자의 기호가 나타난다.
+- `: f` 와 같이 빈칸을 추가하면 `+` 기호는 공백으로 나타내고 `-` 기호만 나타난다.
+- `:-f` 와 같이 `-` 를 붙이면 `+` 기호는 생략하고 `-` 기호만 나타낸다.
+
+**Integer**
+
+```python
+print('정수: {0:d}; 16진수: {0:x}; 8진수: {0:o}; 2진수: {0:b}'.format(50))
+print('정수: {0:d}; 16진수: {0:#x}; 8진수: {0:#o}; 2진수: {0:#b}'.format(50))
+```
+
+- `:d` 와 같이 `:` 에 해당 진수의 알파벳을 붙이면 그 진수로 변환할 수 있다.
+- `:#x` 와 같이 진수 알파벳 앞에 `#` 을 붙이면 각 진수의 표준 접두어까지 나타낼 수 있다.
+- 위 예시의 `0` 은 Index 를 나타낸다. 같은 숫자를 다양한 형태로 변환하기 위해 사용했다.
+
+| 타입   | 설명                                                 |
+| ---- | -------------------------------------------------- |
+| b    | 2 진수                                                |
+| c    | 문자                                                 |
+| d    | 10 진수                                               |
+| o    | 8 진수 (접두어: 0o)                                      |
+| x    | 16 진수, 9 보다 큰 수에 대해서는 소문자 알파벳 사용 (접두어: 0x)           |
+| X    | 16 진수, 9 보다 큰 수에 대해서는 대문자 알파벳 사용 (접두어: 0X)           |
+| n    | 숫자, 기본적으로는 d 와 같다. 각 나라에 맞는 숫자 구분자를 넣기 위해 locale 사용 |
+| None | 아무 것도 입력하지 않은 경우, d 와 같다.                           |
+
+```python
+print('{:,}'.format(10000000))
+```
+
+- `:,` 을 사용하면 숫자의 천 단위마다 구분자를 입력한다.
+
+```python
+print('{:%}'.format(5/12))
+```
+
+- `:%` 을 사용하면 비율을 백분율 (%) 로 나타낼 수 있다.
+
+
+#### 리스트 (List)
+
+```python
+list_name = ["variable1", "variable2", 3, 4]
+list_name.remove(3)
+```
+
+- `remove(variable)` 함수를 사용하면 `variable`을 list에서 제거할 수 있습니다.
 ```python
 LIST_A = [1, True, "a"]
 LIST_B = list([1, True, "a"])
@@ -490,7 +706,7 @@ LIST_EMPTY_B = list()
 | `reverse()`    | 리스트의 위치를 역순으로 변경                                                                       |
 | `sort()`       | 리스트 항목들을 정렬                                                                            |
 
-#### 인덱스 (Index)
+##### 인덱스 (Index)
 <img src="https://dschloe.github.io/img/python/basic_syntax/python-list-index.png" style="width: 600px" />
 저장된 데이터는 자동으로 **색인(index)** 이 생긴다.
 index는 좌측 기준 0부터 시작하며 음수를 사용할 경우 우측 기준 -1부터 시작한다.
@@ -539,7 +755,7 @@ List[5] = 6 # 결과: Error
 Index 를 벗어나는 값을 할당하려고 할 경우 에러가 발생한다.
 새로운 값을 추가하기 위해서는 `append()` 함수를 사용해야 한다.
 
-#### 리스트의 `+` 연산
+##### 리스트의 `+` 연산
 ```python
 a = [1, 2, 3]
 b = [4, 5, 6]
@@ -550,7 +766,7 @@ print(a+b) # 결과: [1, 2, 3, 4, 5, 6]
 `+` 연산자로 두 리스트를 합친 새로운 객체를 생성할 수 있다.
 기존 객체에 값을 더하려면 `extend()` 함수를 사용해야 한다.
 
-#### 중첩 리스트
+##### 중첩 리스트
 
 ```python
 NESTED_LIST = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
@@ -573,7 +789,83 @@ print(NESTED_LIST[1][1]) # 결과: 5
 
 중첩 리스트의 경우 Index `[]` 를 1 번 사용하면 내부의 리스트가 반환되고, `[][]` 와 같이 2 번 사용하면 반환된 리스트에서 Index 에 맞는 값을 가져온다.
 
-### 튜플 (Tuple)
+##### 심화: 함수
+###### `append`
+
+```python
+List = [1, 2, 3]
+List.append(4)
+print(List) # 결과: [1, 2, 3, 4]
+```
+
+- `append(INPUT)` 로 List 의 맨 뒤에 `INPUT` 을 추가할 수 있다.
+
+###### `insert`
+
+```python
+List = [1, 2, 3, 4]
+List.insert(2, 0)
+print(List) # 결과: [1, 2, 0, 3, 4]
+```
+
+- `insert(INDEX, INPUT)` 로 특정 Index 에 값을 추가할 수 있다. `INDEX` 위치에 `INPUT` 을 추가한다.
+
+###### `extend`
+
+```python
+List = [1, 2, 3]
+additional_list = [4, 5, 6]
+List.extend(additional_list)
+print(List)
+```
+
+###### `remove`
+
+```python
+List = [1, 2, 3, 4, 1]
+List.remove(1)
+print(List) # 결과: [2, 3, 4, 1]
+```
+
+- `remove(INPUT)` 로 List 에 존재하는 `INPUT` 을 제거할 수 있다.
+- Index 를 앞에서부터 탐색하여 가장 먼저 나오는 값을 제거한다.
+- List 내에 존재하지 않는 값을 제거 시도할 경우 오류가 발생한다.
+
+###### `pop`
+
+```python
+List = ["a", "b", "c", "d", "e"]
+print(List.pop(3)) # 결과: "d"
+```
+
+- `pop(INDEX)` 로 `INDEX` 에 위치한 값을 제거하면서 동시에 반환할 수 있다.
+- `INDEX` 를 입력하지 않으면 마지막 위치에 존재하는 값을 제거하고 반환한다.
+
+###### `del`
+
+```python
+List = [1, 2, 3, 4, 5, 6]
+del List[2]
+print(List) # 결과: [1, 2, 4, 5, 6]
+```
+
+- `del <List>[INDEX]` 로 `List` 객체의 `INDEX` 위치에 있는 값을 제거할 수 있다.
+- `pop` 과 달리 제거한 값을 반환하지 않는다.
+- `remove` 는 제거할 값을 입력하고 `del` 은 제거할 Index 를 입력한다는 차이점이 있다.
+
+###### `len`
+
+```python
+List = [1, 2, 3, 4, 5]
+print(len(List)) # 결과: 5
+```
+
+- `len(LIST)` 을 사용하면 `LIST` 의 길이가 반환된다.
+
+
+
+
+#### 튜플 (Tuple)
 
 ```python
 TUPLE_A = '배트맨', 1989, '슈퍼맨II' , 1980
@@ -611,7 +903,7 @@ print(TUPLE_A) # 결과: [1, 2, 3], [4, 5, 7]
 Tuple 에 포함된 값은 변경이 불가능하지만 리스트를 값으로 가질 경우 리스트 내부의 값은 변경할 수 있다.
 Tuple 이 값으로 갖는 것은 List 의 주소이다. List 는 값이 변경한 자료 구조이므로 내부 값을 변경해도 Tuple 의 규칙에 위배되지 않는다.
 
-#### Unpacking
+##### Unpacking
 
 ```python
 TUPLE_A = '배트맨', 1989, '슈퍼맨II' , 1980
@@ -625,7 +917,7 @@ print(d) # 결과: 1980
 위의 `TUPLE_A` 처럼 여러 값들을 하나의 변수에 할당하는 것을 **Packing**이라고 한다.
 `a, b, c, d = TUPLE_A` 처럼 Packing 한 변수를 활용하여 여러 변수에 동시에 값을 할당하는 것을 **Unpacking**이라 한다.
 
-### 집합 (Set)
+#### 집합 (Set)
 
 ```python
 SET = {'C++', 'Java', 'Python'}
@@ -654,7 +946,7 @@ print(SET_A ^ SET_B) # 여집합, 결과: {'g', 'm', 'l', 'd', 'z', 'e', 'f', 'b
 | `update([값1, 값2, ...])` | 여러 값 한 번에 추가 |
 | `remove(값)`             | 특정 값 제거      |
 
-### 딕셔너리 (Dictionary)
+#### 딕셔너리 (Dictionary)
 
 ```python
 DICTIONARY_A = {'blue': 3, 'red': 4, 'green': 5}
@@ -695,29 +987,7 @@ print(3 in DICTIONARY_A) # 결과: False
 
 `in` 을 사용할 경우 key 값을 기준으로 참/거짓을 판단한다.
 
-### In
-
-```python
-LIST = [1, 2, 3, 4]
-print(2 in LIST) # 결과: True
-```
-
-- 열거형 데이터에는 `in` 을 사용할 수 있다. 해당 데이터에 입력한 값이 존재하면 `True`, 이외에는 `False` 를 반환한다.
-
-## 3. 타입 종류
-
-### 1) 변할 수 없는 타입 (Immutable)
-
-해당 타입의 경우 같은 변수더라도 새로운 값을 할당하면 새로운 메모리 주소에 할당된다.
-해당 메모리의 값을 변경할 수 없고 새로운 메모리에 값을 할당한 후 그 메모리 주소를 다시 가리킨다.
-숫자 타입 (`int`, `float`, `complex`), 논리 타입 (`bool`), 문자열 타입 (`str`), `tuple`, `bytes`, `frozenset` 타입이 해당한다.
-
-### 2) 변할 수 있는 타입 (Mutable)
-
-여러 값을 저장할 수 있는 타입들이 주로 해당하며 내부 값을 변경해도 메모리는 그대로 유지된다.
-`list`, `set`, `dict`, `byte array` 타입이 이에 해당한다.
-
-### 3) 타입 변환
+### 타입 변환
 
 ```python
 var1 = "Python"
@@ -734,42 +1004,6 @@ c = complex(1.1,2.2) # 결과: 1.1+2.2j
 ```
 
 
-
-
-
-## 문자열
-```python
-message = "Hello World"
-print(message.split(" "))
-```
-- `split(구분자)` 함수를 실행하면 입력한 문자열에 포함된 `구분자`를 기준으로 값을 나누어서 리스트로 반환합니다.
-
-```python
-hello = "Hello"
-world = "World"
-print(hello + world)
-```
-- 문자열끼리 덧셈을 실행하면 붙어있는 문자열이 출력됩니다.
-
-## 리스트
-```python
-# 인덱스는 0부터 시작합니다.
-list_name = ["variable1", "variable2", 3, 4]
-
-# Index 0:  "variable1"
-# Index 1:  "variable2"
-# Index 2:  3
-# Index 3:  4
-```
-
-- 길이는 `len()` 함수로 출력할 수 있습니다.
-
-```python
-list_name = ["variable1", "variable2", 3, 4]
-list_name.remove(3)
-```
-
-- `remove(variable)` 함수를 사용하면 `variable`을 list에서 제거할 수 있습니다.
 
 
 ## 입출력
