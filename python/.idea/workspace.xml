@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="96441f47-c7a4-4517-8154-6965d260e69b" name="변경" comment="chore: Update baekjoon">
+      <change afterPath="$PROJECT_DIR$/baekjoon/사칙연산/10430_나머지.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/1000_a+b.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/1000_a+b.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/1001_a-b.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/1001_a-b.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/1008_a÷b.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/1008_a÷b.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/10869_사칙연산.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/10869_사칙연산.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/10926_？？！.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/10926_？？！.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/10998_a×b.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/10998_a×b.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/18108_1998년생인_내가_태국에서는_2541년생？！.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/18108_1998년생인_내가_태국에서는_2541년생？！.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/2557_hello_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/2557_hello_world.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2kh6Y7PwJ2Op3b3NEphsLv4CeGI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/leehw/OneDrive/바탕 화면/Python/data/python/pandas",
+    "settings.editor.selected.configurable": "com.koxudaxi.ruff.RuffConfigurable"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\leehw\OneDrive\바탕 화면\Python\data\python\pandas" />
+      <recent name="C:\Users\leehw\OneDrive\바탕 화면\Python\data\python\numpy" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\leehw\OneDrive\바탕 화면\Python\data\python\baekjoon\사칙연산" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="96441f47-c7a4-4517-8154-6965d260e69b" name="변경" comment="" />
+      <created>1723723505487</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723723505487</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1723723628834</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1723723628834</updated>
+    </task>
+    <task id="LOCAL-00002" summary="chore: Update baekjoon">
+      <option name="closed" value="true" />
+      <created>1723727615832</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1723727615832</updated>
+    </task>
+    <task id="LOCAL-00003" summary="chore: Update baekjoon">
+      <option name="closed" value="true" />
+      <created>1723728546457</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1723728546457</updated>
+    </task>
+    <task id="LOCAL-00004" summary="chore: Update baekjoon">
+      <option name="closed" value="true" />
+      <created>1723728572328</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1723728572328</updated>
+    </task>
+    <task id="LOCAL-00005" summary="rename: Rename baekjoon files">
+      <option name="closed" value="true" />
+      <created>1723728685162</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1723728685162</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="chore: Update baekjoon" />
+    <MESSAGE value="rename: Rename baekjoon files" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename: Rename baekjoon files" />
+  </component>
+</project>

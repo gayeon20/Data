@@ -1,0 +1,6 @@
+a = int(input())
+b = input()
+b1, b2, b3 = map(int, b)
+print(a * b1)
+print(a * b2)
+print(a * b3)
