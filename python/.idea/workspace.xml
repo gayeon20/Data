@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96441f47-c7a4-4517-8154-6965d260e69b" name="변경" comment="chore: Update baekjoon">
-      <change afterPath="$PROJECT_DIR$/baekjoon/사칙연산/11382_꼬마 정민.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/baekjoon/조건문/1330_두_수_비교하기.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic/if_statement.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/basic/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/python_home.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/python_home.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/2588_곱셈.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/2588_곱셈.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +113,23 @@
       <option name="project" value="LOCAL" />
       <updated>1723728685162</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="chore: Update baekjoon">
+      <option name="closed" value="true" />
+      <created>1723799992708</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1723799992708</updated>
+    </task>
+    <task id="LOCAL-00007" summary="chore: Update baekjoon">
+      <option name="closed" value="true" />
+      <created>1723801793603</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1723801793603</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,7 +143,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -139,8 +157,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
-    <MESSAGE value="chore: Update baekjoon" />
     <MESSAGE value="rename: Rename baekjoon files" />
-    <option name="LAST_COMMIT_MESSAGE" value="rename: Rename baekjoon files" />
+    <MESSAGE value="chore: Update baekjoon" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: Update baekjoon" />
   </component>
 </project>
