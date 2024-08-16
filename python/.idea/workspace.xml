@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96441f47-c7a4-4517-8154-6965d260e69b" name="변경" comment="chore: Update baekjoon">
-      <change afterPath="$PROJECT_DIR$/baekjoon/사칙연산/10430_나머지.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/1000_a+b.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/1000_a+b.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/1001_a-b.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/1001_a-b.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/1008_a÷b.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/1008_a÷b.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/10869_사칙연산.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/10869_사칙연산.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/10926_？？！.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/10926_？？！.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/10998_a×b.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/10998_a×b.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/18108_1998년생인_내가_태국에서는_2541년생？！.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/18108_1998년생인_내가_태국에서는_2541년생？！.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/2557_hello_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/2557_hello_world.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/baekjoon/사칙연산/11382_꼬마 정민.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/baekjoon/사칙연산/2588_곱셈.py" beforeDir="false" afterPath="$PROJECT_DIR$/baekjoon/사칙연산/2588_곱셈.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
