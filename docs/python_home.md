@@ -19,6 +19,13 @@ link: https://docs.python.org/ko/3/
 - [[python_function|파이썬 함수 (Python Function)]]
 - [[python_variable|파이썬 변수 (Python Variable)]]
 ---
+- [6. 모듈 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/tutorial/modules.html)
+- [내장 함수 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/functions.html#enumerate)
+- [8. 에러와 예외 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/tutorial/errors.html#tut-handling)
+- [내장형 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/stdtypes.html#old-string-formatting)
+- [2. 어휘 분석 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/lexical_analysis.html#f-strings)
+- [string — Common string operations — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/string.html#formatstrings)
+
 
 - 전문 소프트웨어 개발자라면, 여러 C/C++/Java 라이브러리들을 갖고 작업해야만 할 수 있는데, 일반적인 코드작성/컴파일/테스트/재컴파일 순환이 너무 느리다는 것을 깨닫게 됩니다. 어쩌면 그 라이브러리들을 위한 테스트 스위트를 작성하다가, 테스트 코드 작성에 따분해하는 자신을 발견하게 됩니다. 또는 확장 언어를 사용하는 프로그램을 작성했는데, 완전히 새로운 언어 전체를 설계하고 구현하고 싶지 않을 수 있습니다. 파이썬은 바로 여러분을 위한 언어입니다.
 - 이러한 작업 중 일부는 Unix 셸 스크립트나 Windows 배치 파일을 작성할 수 있지만 셸 스크립트는 파일을 이동하고 텍스트 데이터를 변경하는 데 가장 적합하며 GUI 애플리케이션이나 게임에는 적합하지 않습니다. C/C++/Java 프로그램을 작성할 수도 있지만 초안을 작성하는 데도 많은 개발 시간이 소요될 수 있습니다. Python은 사용이 간편하고 Windows, macOS, Unix 운영 체제에서 사용할 수 있으며 작업을 더 빠르게 완료하는 데 도움이 됩니다.
