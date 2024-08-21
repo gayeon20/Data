@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96441f47-c7a4-4517-8154-6965d260e69b" name="변경" comment="chore: Update baekjoon">
-      <change afterPath="$PROJECT_DIR$/baekjoon/조건문/14681_사분면_고르기.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/Variable/python_string.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/Variable/python_string.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/python_control.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/python_input_output.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/python_input_output.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,9 +48,11 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/leehw/OneDrive/바탕 화면/Python/data/python/pandas",
-    "settings.editor.selected.configurable": "com.koxudaxi.ruff.RuffConfigurable"
+    "settings.editor.selected.configurable": "com.koxudaxi.ruff.RuffConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -69,6 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1723723505487</updated>
+      <workItem from="1724241305166" duration="8000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -136,6 +140,9 @@
     </task>
     <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
