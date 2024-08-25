@@ -4,6 +4,9 @@ excerpt:
 categories:
   - Python
 tags:
+  - Software-Language
+  - Interpreter-Language
+  - Object-Oriented-Programming
   - Python
   - Comment
   - Operator
@@ -22,12 +25,12 @@ link: https://docs.python.org/ko/3/
 - [[python_module|파이썬 모듈 (Python Module)]]
 - [[python_variable|파이썬 변수 (Python Variable)]]
 ---
-- [ ] [2. 유닉스 플랫폼에서 파이썬 사용하기 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/using/unix.html)
-- [ ] [파이썬 언어 레퍼런스 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/index.html#reference-index)
-- [ ] [내장 함수 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/functions.html#enumerate)
-- [ ] [내장형 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/stdtypes.html#old-string-formatting)
-- [ ] [2. 어휘 분석 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/lexical_analysis.html#f-strings)
-- [ ] [string — Common string operations — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/string.html#formatstrings)
+- [ ] [3. 데이터 모델 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/datamodel.html)
+- [ ] [파이썬 표준 라이브러리 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/index.html)
+- [ ] [개발 도구 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/development.html)
+- [ ] [파이썬/C API 레퍼런스 설명서 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/c-api/index.html)
+
+
 
 # Python 언어
 
@@ -1074,6 +1077,7 @@ class Dog:
 ```
 
 
+
 ## 모듈 (Module) [[python_module|(자세히 보기)]]
 
 - 파이썬 인터프리터를 종료한 후에 다시 들어가면, 여러분이 만들었던 정의들이 사라집니다 (함수나 변수들). 그래서, 좀 긴 프로그램을 쓰고자 한다면, 대신 인터프리터 입력을 편집기를 사용해서 준비한 후에 그 파일을 입력으로 사용해서 실행하는 것이 좋습니다. 이렇게 하는 것을 _스크립트_ 를 만든다고 합니다. 프로그램이 길어짐에 따라, 유지를 쉽게 하려고 여러 개의 파일로 나누고 싶을 수 있습니다. 여러 프로그램에서 썼던 편리한 함수를 각 프로그램에 정의를 복사하지 않고도 사용하고 싶을 수도 있습니다.
@@ -1751,30 +1755,297 @@ deactivate
 
 # Python 심화
 > [!summary]
-> > 다음 내용은 Python 프로그램 작성 중 필요한 경우 참고할만한 내용입니다.
-> - [[#파이썬 스크립트 만들기]]
+> > 다음 내용은 Python을 깊게 이해하기 위한 내용들입니다.
+> - [[#환경 설정 python_environment (자세히 보기)|환경 설정 (Environment Settings)]]
+> - [[#언어 구조 (Language Structure) python_language_structure (자세히 보기)|언어 구조 (Language Structure)]]
 > - [[#대화형 시작 파일]]
 > - [[#커스터마이제이션 모듈]]
+> - [[#확장 (Extensions)]]
 
-## 파이썬 개발 모드
-[파이썬 개발 모드 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/devmode.html#devmode)
-- 환경 변수 문서 참고
+## 환경 설정 (Environment Settings) [[python_environment|(자세히 보기)]]
 
-## 파이썬 스크립트 만들기
-- BSD 스타일의 유닉스 시스템에서 파이썬 스크립트는 셸 스크립트처럼 직접 실행할 수 있게 만들 수 있습니다. 다음과 같은 줄
+### 개발 모드
 
-```python
-#!/usr/bin/env python3
-```
+- 파이썬 개발 모드에는 기본적으로 활성화하기에 너무 비싼 추가 실행 시간 검사를 도입합니다. 코드가 올바르면 기본값보다 더 상세하지(verbose) 않아야 합니다; 새로운 경고는 문제가 감지될 때만 발생합니다.
+- [`-X dev`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-X) 명령 줄 옵션을 사용하거나 [`PYTHONDEVMODE`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONDEVMODE) 환경 변수를 `1`로 설정하여 활성화할 수 있습니다.
 
-- (인터프리터가 사용자의 `PATH` 에 있다고 가정할 때)을 스크립트의 시작 부분에 넣고 파일에 실행 가능 모드를 줍니다. `#!` 는 반드시 파일의 처음 두 문자여야 합니다. 일부 플랫폼에서는 이 첫 번째 줄이 유닉스 스타일의 줄 종료 (`'\n'`)로 끝나야 하며, 윈도우 줄 종료(`'\r\n'`)는 허락되지 않습니다. 파이썬에서 해시, 또는 파운드, 문자 `'#'` 는 주석을 시작하는 데 사용됩니다.
-- 스크립트는 **chmod** 명령을 사용하여 실행 가능한 모드, 또는 권한, 을 부여받을 수 있습니다.
+#### 개발 모드의 효과
+
+- 파이썬 개발 모드를 활성화하는 것은 다음 명령과 유사하지만, 아래에 설명된 추가 효과가 있습니다:
 
 ```sh
-$ chmod +x myscript.py
+PYTHONMALLOC=debug PYTHONASYNCIODEBUG=1 python -W default -X faulthandler
 ```
 
-- 윈도우 시스템에서는 “실행 가능 모드”라는 개념이 없습니다. 파이썬 설치 프로그램은 `.py` 파일을 `python.exe`와 자동으로 연결하여, 파이썬 파일을 이중 클릭하면 스크립트로 실행합니다. 확장자는 `.pyw` 일 수도 있습니다. 이 경우, 일반적으로 나타나는 콘솔 창은 표시되지 않습니다.
+- `default` [경고 필터](https://docs.python.org/ko/3.12/library/warnings.html#describing-warning-filters)를 추가합니다. 다음과 같은 경고가 표시됩니다:
+	- [`DeprecationWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#DeprecationWarning "DeprecationWarning")
+	- [`ImportWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#ImportWarning "ImportWarning")
+	- [`PendingDeprecationWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#PendingDeprecationWarning "PendingDeprecationWarning")
+	- [`ResourceWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#ResourceWarning "ResourceWarning")
+  일반적으로, 위의 경고는 기본 [경고 필터](https://docs.python.org/ko/3.12/library/warnings.html#describing-warning-filters)가 필터링합니다.
+  [`-W default`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-W) 명령 줄 옵션이 사용된 것처럼 작동합니다.
+  경고를 에러로 처리하려면 [`-W error`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-W) 명령 줄 옵션을 사용하거나 [`PYTHONWARNINGS`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONWARNINGS) 환경 변수를 `error`로 설정하십시오.
+- 메모리 할당자에 디버그 훅을 설치하여 다음을 확인합니다:
+	- 버퍼 언더플로
+	- 버퍼 오버플로
+	- 메모리 할당자 API 위반
+	- GIL의 안전하지 않은 사용
+  [`PyMem_SetupDebugHooks()`](https://docs.python.org/ko/3.12/c-api/memory.html#c.PyMem_SetupDebugHooks "PyMem_SetupDebugHooks") C 함수를 참조하십시오.
+  [`PYTHONMALLOC`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONMALLOC) 환경 변수가 `debug`로 설정된 것처럼 동작합니다.
+  메모리 할당자에 디버그 훅을 설치하지 않고 파이썬 개발 모드를 사용하려면, [`PYTHONMALLOC`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONMALLOC) 환경 변수를 `default`로 설정하십시오.
+
+- 파이썬 시작 시 [`faulthandler.enable()`](https://docs.python.org/ko/3.12/library/faulthandler.html#faulthandler.enable "faulthandler.enable")를 호출하여 [`SIGSEGV`](https://docs.python.org/ko/3.12/library/signal.html#signal.SIGSEGV "signal.SIGSEGV"), [`SIGFPE`](https://docs.python.org/ko/3.12/library/signal.html#signal.SIGFPE "signal.SIGFPE"), [`SIGABRT`](https://docs.python.org/ko/3.12/library/signal.html#signal.SIGABRT "signal.SIGABRT"), [`SIGBUS`](https://docs.python.org/ko/3.12/library/signal.html#signal.SIGBUS "signal.SIGBUS") 및 [`SIGILL`](https://docs.python.org/ko/3.12/library/signal.html#signal.SIGILL "signal.SIGILL") 시그널에 대한 처리기를 설치하여 크래시 시 파이썬 트레이스백을 덤프할 수 있습니다.
+  
+  [`-X faulthandler`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-X) 명령 줄 옵션이 사용되거나 [`PYTHONFAULTHANDLER`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONFAULTHANDLER) 환경 변수가 `1`로 설정된 것처럼 작동합니다.
+
+- [asyncio 디버그 모드](https://docs.python.org/ko/3.12/library/asyncio-dev.html#asyncio-debug-mode)를 활성화합니다. 예를 들어, [`asyncio`](https://docs.python.org/ko/3.12/library/asyncio.html#module-asyncio "asyncio: Asynchronous I/O.")는 어웨이트 하지 않은 코루틴을 확인하고 이를 로그 합니다.
+  [`PYTHONASYNCIODEBUG`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONASYNCIODEBUG) 환경 변수가 `1`로 설정된 것처럼 동작합니다.
+- 문자열 인코딩과 디코딩 연산에 대해 _encoding_ 과 _errors_ 인자를 확인합니다. 예: [`open()`](https://docs.python.org/ko/3.12/library/functions.html#open "open"), [`str.encode()`](https://docs.python.org/ko/3.12/library/stdtypes.html#str.encode "str.encode") 및 [`bytes.decode()`](https://docs.python.org/ko/3.12/library/stdtypes.html#bytes.decode "bytes.decode").
+  
+  기본적으로, 최상의 성능을 위해, _errors_ 인자는 첫 번째 인코딩/디코딩 에러에서만 검사되며 빈 문자열에 대해서는 _encoding_ 인자가 무시되는 경우가 있습니다.
+
+- [`io.IOBase`](https://docs.python.org/ko/3.12/library/io.html#io.IOBase "io.IOBase") 파괴자는 `close()` 예외를 로그 합니다.
+- [`sys.flags`](https://docs.python.org/ko/3.12/library/sys.html#sys.flags "sys.flags")의 [`dev_mode`](https://docs.python.org/ko/3.12/library/sys.html#sys.flags.dev_mode "sys.flags.dev_mode") 속성을 `True`로 설정합니다.
+
+- 파이썬 개발 모드는 (성능과 메모리에 대한) 오버헤드 비용이 너무 비싸서, 기본적으로 [`tracemalloc`](https://docs.python.org/ko/3.12/library/tracemalloc.html#module-tracemalloc "tracemalloc: Trace memory allocations.") 모듈을 활성화하지 않습니다. [`tracemalloc`](https://docs.python.org/ko/3.12/library/tracemalloc.html#module-tracemalloc "tracemalloc: Trace memory allocations.") 모듈을 활성화하면 일부 에러의 원인에 대한 추가 정보가 제공됩니다. 예를 들어, [`ResourceWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#ResourceWarning "ResourceWarning")은 자원이 할당된 곳의 트레이스백을 로그하고, 버퍼 오버플로 에러는 메모리 블록이 할당된 곳의 트레이스백을 로그 합니다.
+- 파이썬 개발 모드는 [`-O`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-O) 명령 줄 옵션이 [`assert`](https://docs.python.org/ko/3.12/reference/simple_stmts.html#assert) 문을 제거하거나 [`__debug__`](https://docs.python.org/ko/3.12/library/constants.html#debug__ "__debug__")를 `False`로 설정하는 것을 막지 않습니다.
+- 파이썬 개발 모드는 파이썬을 시작할 때만 활성화할 수 있습니다. 해당 값은 [`sys.flags.dev_mode`](https://docs.python.org/ko/3.12/library/sys.html#sys.flags "sys.flags")에서 읽을 수 있습니다.
+
+> 버전 3.8에서 변경: [`io.IOBase`](https://docs.python.org/ko/3.12/library/io.html#io.IOBase "io.IOBase") 파괴자는 이제 `close()` 예외를 로그 합니다.
+> 버전 3.9에서 변경: _encoding_ 과 _errors_ 인자는 이제 문자열 인코딩과 디코딩 연산을 검사합니다.
+
+> [!example] `ResourceWarning` 예
+> 
+> - 명령 줄에 지정된 텍스트 파일의 줄 수를 세는 스크립트의 예:
+> 
+> ```python
+> import sys
+> 
+> def main():
+>     fp = open(sys.argv[1])
+>     nlines = len(fp.readlines())
+>     print(nlines)
+>     # The file is closed implicitly
+> 
+> if __name__ == "__main__":
+>     main()
+> ```
+> 
+> - 스크립트는 파일을 명시적으로 닫지 않습니다. 기본적으로, 파이썬은 아무런 경고도 하지 않습니다. 269 줄이 있는 README.txt를 사용하는 예:
+> 
+> ```sh
+> $ python script.py README.txt
+> 269
+> ```
+> 
+> 파이썬 개발 모드를 사용하면 [`ResourceWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#ResourceWarning "ResourceWarning") 경고가 표시됩니다:
+> 
+> ```sh
+> $ python -X dev script.py README.txt
+> 269
+> script.py:10: ResourceWarning: unclosed file <_io.TextIOWrapper name='README.rst' mode='r' encoding='UTF-8'>
+>   main()
+> ResourceWarning: Enable tracemalloc to get the object allocation traceback
+> ```
+> 
+> 또한, [`tracemalloc`](https://docs.python.org/ko/3.12/library/tracemalloc.html#module-tracemalloc "tracemalloc: Trace memory allocations.")을 활성화하면 파일이 열린 줄이 표시됩니다:
+> 
+> ```sh
+> $ python -X dev -X tracemalloc=5 script.py README.rst
+> 269
+> script.py:10: ResourceWarning: unclosed file <_io.TextIOWrapper name='README.rst' mode='r' encoding='UTF-8'>
+>   main()
+> Object allocated at (most recent call last):
+>   File "script.py", lineno 10
+>     main()
+>   File "script.py", lineno 4
+>     fp = open(sys.argv[1])
+> ```
+> - 수선은 파일을 명시적으로 닫는 것입니다. 컨텍스트 관리자를 사용하는 예:
+> 
+> ```python
+> def main():
+>     # Close the file explicitly when exiting the with block
+>     with open(sys.argv[1]) as fp:
+>         nlines = len(fp.readlines())
+>     print(nlines)
+> ```
+> 
+> - 자원을 명시적으로 닫지 않으면 예상보다 오래 자원을 열어둘 수 있습니다; 파이썬을 종료할 때 심각한 문제가 발생할 수 있습니다. CPython에서도 나쁘지만, PyPy에서는 더 나쁩니다. 리소스를 명시적으로 닫으면 응용 프로그램을 더 결정적이고 안정적으로 만들 수 있습니다.
+
+> [!example] 잘못된 파일 기술자 에러 예
+> 
+> - 자신의 첫 줄을 표시하는 스크립트:
+> 
+> ```python
+> import os
+> 
+> def main():
+>     fp = open(__file__)
+>     firstline = fp.readline()
+>     print(firstline.rstrip())
+>     os.close(fp.fileno())
+>     # The file is closed implicitly
+> 
+> main()
+> ```
+> 
+> - 기본적으로, 파이썬은 아무런 경고도 하지 않습니다:
+> 
+> ```sh
+> $ python script.py
+> import os
+> ```
+> 
+> - 파이썬 개발 모드는 [`ResourceWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#ResourceWarning "ResourceWarning")을 표시하고 파일 객체를 파이널라이즈 할 때 “잘못된 파일 기술자(Bad file descriptor)” 에러를 로그 합니다:
+> 
+> ```sh
+> $ python -X dev script.py
+> import os
+> script.py:10: ResourceWarning: unclosed file <_io.TextIOWrapper name='script.py' mode='r' encoding='UTF-8'>
+>   main()
+> ResourceWarning: Enable tracemalloc to get the object allocation traceback
+> Exception ignored in: <_io.TextIOWrapper name='script.py' mode='r' encoding='UTF-8'>
+> Traceback (most recent call last):
+>   File "script.py", line 10, in `<module>`
+>     main()
+> OSError: [Errno 9] Bad file descriptor
+> ```
+> 
+> - `os.close(fp.fileno())`는 파일 기술자를 닫습니다. 파일 객체 파이널라이저가 파일 기술자를 다시 닫으려고 하면, `Bad file descriptor` 에러로 실패합니다. 파일 기술자는 한 번만 닫아야 합니다. 최악의 시나리오에서는, 두 번 닫을 때 충돌이 발생할 수 있습니다 (예는 [bpo-18748](https://bugs.python.org/issue?@action=redirect&bpo=18748)을 참조하십시오).
+> - 수선은 `os.close(fp.fileno())` 줄을 제거하거나, `closefd=False`로 파일을 여는 것입니다.
+
+## 언어 구조 (Language Structure) [[python_language_structure|(자세히 보기)]]
+### 줄 구조(Line structure)
+
+파이썬 프로그램은 여러 개의 _논리적인 줄(logical lines)_ 들로 나뉩니다.
+
+#### 논리적인 줄
+
+- 논리적인 줄의 끝은 NEWLINE 토큰으로 표현됩니다. 문법이 허락하지 않는 이상 (예를 들어 복합문에서 문장들 사이) 문장은 논리적인 줄 간의 경계를 가로지를 수 없습니다. 논리적인 줄은 명시적이거나 묵시적인 _줄 결합(line joining)_ 규칙에 따라 하나 이상의 _물리적인 줄(physical lines)_ 들로 구성됩니다.
+
+#### 물리적인 줄
+
+- 물리적인 줄은 줄의 끝을 나타내는 시퀀스로 끝나는 문자들의 시퀀스입니다. 소스 파일과 문자열에는 플랫폼들의 표준 줄 종료 시퀀스들이 모두 사용될 수 있습니다 - ASCII LF (개행문자)를 사용하는 유닉스 형, ASCII 시퀀스 CR LF(캐리지 리턴 다음에 오는 개행 문자)를 사용하는 윈도우 형, ASCII CR(캐리지 리턴)을 사용하는 예전의 매킨토시 형. 이 형태들은 플랫폼의 종류와 관계없이 동등하게 사용할 수 있습니다. 입력의 끝은 마지막 물리적인 줄의 묵시적 종결자 역할을 합니다.
+- 파이썬을 내장할 때는, 소스 코드 문자열은 반드시 줄 종료 문자에 표준 C 관행(ASCII LF를 표현하는 `\n` 문자로 줄이 종료됩니다)을 적용해서 파이썬 API로 전달되어야 합니다.
+
+#### 주석
+- 주석은 문자열 리터럴에 포함되지 않는 해시 문자(`#`)로 시작하고 물리적인 줄의 끝에서 끝납니다. 묵시적인 줄 결합 규칙이 유효하지 않은 이상, 주석은 논리적인 줄을 종료시킵니다. 주석은 문법이 무시합니다.
+
+#### 인코딩 선언
+
+- 파이썬 스크립트의 첫 번 째나 두 번째 줄에 있는 주석이 정규식 `coding[=:]\s*([-\w.]+)` 과 매치되면, 이 주석은 인코딩 선언으로 처리됩니다. 이 정규식의 첫 번째 그룹은 소스 코드 파일의 인코딩 이름을 지정합니다. 인코딩 선언은 줄 전체에 홀로 나와야 합니다. 만약 두 번째 줄이라면, 첫 번째 줄 역시 주석만 있어야 합니다. 인코딩 선언의 권장 형태는 두 개입니다. 하나는
+
+```python
+# -*- coding: <encoding-name> -*-
+```
+
+인데 GNU Emacs에서도 인식됩니다. 다른 하나는
+
+```python
+# vim:fileencoding=<encoding-name>
+```
+
+인데 Bram Moolenaar 의 VIM에서 인식됩니다.
+
+- 인코딩 선언을 찾을 수 없는 경우 기본 인코딩은 UTF-8입니다. 파일의 암시적 또는 명시적 인코딩이 UTF-8인 경우 구문 오류가 아닌 초기 UTF-8 바이트 순서 표시(b'xefxbbxbf')가 무시됩니다.
+- 인코딩이 선언된 경우 인코딩 이름은 파이썬에서 인식되어야 합니다([표준 인코딩](https://docs.python.org/ko/3.12/library/codecs.html#standard-encodings) 참조). 인코딩은 문자열 리터럴, 주석 및 식별자를 포함한 모든 어휘 분석에 사용됩니다.
+
+#### 명시적인 줄 결합
+- 둘 이상의 물리적인 줄은 역 슬래시 문자(`\`)를 사용해서 논리적인 줄로 결합할 수 있습니다: 물리적인 줄이 문자열 리터럴이나 주석의 일부가 아닌 역 슬래시 문자로 끝나면, 역 슬래시와 뒤따르는 개행 문자가 제거된 채로, 현재 만들어지고 있는 논리적인 줄에 합쳐집니다. 예를 들어:
+
+```python
+if 1900 < year < 2100 and 1 <= month <= 12 \
+   and 1 <= day <= 31 and 0 <= hour < 24 \
+   and 0 <= minute < 60 and 0 <= second < 60:   # Looks like a valid date
+        return 1
+```
+
+- 역 슬래시로 끝나는 줄은 주석이 포함될 수 없습니다. 역 슬래시는 주석을 결합하지 못합니다. 역 슬래시는 문자열 리터럴을 제외한 어떤 토큰도 결합하지 못합니다 (즉, 문자열 리터럴 이외의 어떤 토큰도 역 슬래시를 사용해서 두 줄에 나누어 기록할 수 없습니다.). 문자열 리터럴 밖에 있는 역 슬래시가 앞에서 언급한 장소 이외의 곳에 등장하는 것은 문법에 어긋납니다.
+
+#### 묵시적인 줄 결합
+
+- 괄호(`()`), 대괄호(`[]`), 중괄호(`{}`)가 사용되는 표현은 역 슬래시 없이도 여러 개의 물리적인 줄로 나눌 수 있습니다. 예를 들어:
+
+```python
+month_names = ['Januari', 'Februari', 'Maart',      # These are the
+               'April',   'Mei',      'Juni',       # Dutch names
+               'Juli',    'Augustus', 'September',  # for the months
+               'Oktober', 'November', 'December']   # of the year
+```
+
+- 묵시적으로 이어지는 줄들은 주석을 포함할 수 있습니다. 이어지는 줄들의 들여쓰기는 중요하지 않습니다. 중간에 빈 줄이 들어가도 됩니다. 묵시적으로 줄 결합하는 줄 들 간에는 NEWLINE 토큰이 만들어지지 않습니다. 묵시적으로 이어지는 줄들은 삼중 따옴표 된 문자열들에서도 등장할 수 있는데 (아래를 보라), 이 경우는 주석이 포함될 수 없습니다.
+
+#### 빈 줄
+
+- 스페이스, 탭, 폼 피드(formfeed) 와 주석만으로 구성된 논리적인 줄은 무시됩니다. (즉 NEWLINE 토큰이 만들어지지 않습니다.) 대화형으로 문장이 입력되는 도중에는 빈 줄의 처리가 REPL 구현에 따라 달라질 수 있습니다. 표준 대화형 인터프리터에서는, 완전히 빈 줄(즉 공백이나 주석조차 없는 것)은 다중 행 문장을 종료시킵니다.
+
+#### 들여쓰기
+
+- 논리적인 줄의 제일 앞에 오는 공백(스페이스와 탭)은 줄의 들여쓰기 수준을 계산하는 데 사용되고, 이는 다시 문장들의 묶음을 결정하는 데 사용되게 됩니다.
+- 탭은 (왼쪽에서 오른쪽으로) 1~8개의 스페이스로 변환되는데, 치환된 후의 총 스페이스 문자 수가 8의 배수가 되도록 맞춥니다. (유닉스에서 사용되는 규칙에 맞추려는 것입니다.) 첫 번째 비 공백 문자 앞에 나오는 공백의 총수가 줄의 들여쓰기를 결정합니다. 들여쓰기는 역 슬래시를 사용해서 여러 개의 물리적인 줄로 나눠질 수 없습니다; 첫 번째 역 슬래시 이전의 공백이 들여쓰기를 결정합니다.
+- 소스 파일이 탭과 스페이스를 섞어 쓰는 경우, 탭이 몇 개의 스페이스에 해당하는지에 따라 다르게 해석될 수 있으면 [`TabError`](https://docs.python.org/ko/3.12/library/exceptions.html#TabError "TabError") 를 일으킵니다.
+
+> **크로스-플랫폼 호환성 유의 사항:** UNIX 이외의 플랫폼에서 편집기들이 동작하는 방식 때문에, 하나의 파일 내에서 들여쓰기를 위해 탭과 스페이스를 섞어 쓰는 것은 현명한 선택이 아닙니다. 다른 플랫폼들에서는 최대 들여쓰기 수준에 제한이 있을 수도 있다는 점도 주의해야 합니다.
+
+- 폼 피드 문자는 줄의 처음에 나올 수 있습니다; 앞서 설명한 들여쓰기 수준 계산에서는 무시됩니다. 페이지 넘김 문자 앞에 공백이나 탭이 있는 경우는 정의되지 않은 효과를 줄 수 있습니다 (가령, 스페이스 수가 0으로 초기화될 수 있습니다).
+- 연속된 줄의 들여쓰기 수준은, 스택을 사용해서, 다음과 같은 방법으로 INDENT와 DEDENT 토큰을 만드는 데 사용됩니다.
+- 파일의 첫 줄을 읽기 전에 `0` 하나를 스택에 넣습니다(push); 이 값은 다시 꺼내는(pop) 일이 없습니다. 스택에 넣는 값은 항상 스택의 아래에서 위로 올라갈 때 단조 증가합니다. 각 논리적인 줄의 처음에서 줄의 들여쓰기 수준이 스택의 가장 위에 있는 값과 비교됩니다. 같다면 아무런 일도 일어나지 않습니다. 더 크다면 그 값을 스택에 넣고 하나의 INDENT 토큰을 만듭니다. 더 작다면 이 값은 스택에 있는 값 중 하나여야만 합니다. 이 값보다 큰 모든 스택의 값들을 꺼내고(pop), 꺼낸 횟수만큼의 DEDENT 토큰을 만듭니다. 파일의 끝에서, 스택에 남아있는 0보다 큰 값의 개수만큼 DEDENT 토큰을 만듭니다. 여기에 (혼란스럽다 할지라도) 올바르게 들여쓰기 된 파이썬 코드 조각이 있습니다:
+
+```python
+def perm(l):
+        # Compute the list of all permutations of l
+    if len(l) <= 1:
+                  return [l]
+    r = []
+    for i in range(len(l)):
+             s = l[:i] + l[i+1:]
+             p = perm(s)
+             for x in p:
+              r.append(l[i:i+1] + x)
+    return r
+```
+
+다음 예는 여러 가지 들여쓰기 에러를 보여줍니다:
+
+```python
+ def perm(l):                       # error: first line indented
+for i in range(len(l)):             # error: not indented
+    s = l[:i] + l[i+1:]
+        p = perm(l[:i] + l[i+1:])   # error: unexpected indent
+        for x in p:
+                r.append(l[i:i+1] + x)
+            return r                # error: inconsistent dedent
+```
+
+> 사실, 처음 세 개의 에러는 파서가 감지합니다. 단지 마지막 에러만 어휘 분석기가 감지합니다. — `return r` 의 들여쓰기가 스택에 있는 값과 일치하지 않습니다.
+
+#### 토큰 사이의 공백
+
+- 논리적인 줄의 처음과 문자열 리터럴을 제외하고, 공백 문자인 스페이스, 탭, 폼 피드는 토큰을 분리하기 위해 섞어 쓸 수 있습니다. 두 토큰을 붙여 쓸 때 다른 토큰으로 해석될 수 있는 경우만 토큰 사이에 공백이 필요합니다. (예를 들어, ab 는 하나의 토큰이지만, a b 는 두 개의 토큰입니다.)
+
+
+### 식별자의 예약 영역
+- (키워드와는 별개로) 어떤 부류의 식별자들은 특별한 의미가 있습니다. 이 부류의 식별자들은 시작과 끝의 밑줄 문자 패턴으로 구분됩니다:
+
+`_*`
+- `from module import *`에서 가져올 수 없습니다.
+
+`_`
+- [`match`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#match) 문 내의 `case` 패턴에서 `_`는 [와일드카드](https://docs.python.org/ko/3.12/reference/compound_stmts.html#wildcard-patterns)를 나타내는 [소프트 키워드](https://docs.python.org/ko/3.12/reference/lexical_analysis.html#soft-keywords)입니다.
+- 이와 별도로 대화형 인터프리터는 마지막 평가의 결과를 `_` 변수에 저장합니다. (이 변수는 [`builtins`](https://docs.python.org/ko/3.12/library/builtins.html#module-builtins "builtins")에 저장됩니다: 내장 네임스페이스를 제공하는 모듈.") 모듈에 `print`와 같은 내장 함수와 함께 저장됩니다.)
+- 다른 곳에서는 `_`가 일반 식별자입니다. "특별한" 항목의 이름을 지정하는 데 자주 사용되지만 파이썬 자체에는 특별하지 않습니다.
+
+> 이름 `_` 은 종종 국제화(internationalization)와 관련되어 사용됩니다. 이 관례에 관해서는 [`gettext`](https://docs.python.org/ko/3.12/library/gettext.html#module-gettext "gettext: Multilingual internationalization services.") 모듈의 문서를 참조하십시오.
+
+- 사용하지 않는 변수에도 일반적으로 사용됩니다.
+
+`__*__`
+- 시스템 정의 이름, 비공식적으로 “던더(dunder)” 이름이라고 알려졌습니다. 이 이름들은 인터프리터와 그 구현(표준 라이브러리를 포함합니다)이 정의합니다. 현재 정의된 시스템 이름은 [특수 메서드 이름들](https://docs.python.org/ko/3.12/reference/datamodel.html#specialnames) 섹션과 그 외의 곳에서 논의됩니다. 파이썬의 미래 버전에서는 더 많은 것들이 정의될 가능성이 큽니다. 어떤 문맥에서건, 명시적으로 문서로 만들어진 사용법을 벗어나는 `__*__` 이름의 _모든_ 사용은, 경고 없이 손상될 수 있습니다.
+
+`__*`
+- 클래스-비공개 이름. 이 부류의 이름들을 클래스 정의 문맥에서 사용하면 뒤섞인 형태로 변형됩니다. 부모 클래스와 자식 클래스의 “비공개(private)” 어트리뷰트 간의 이름 충돌을 피하기 위함입니다. [식별자 (이름)](https://docs.python.org/ko/3.12/reference/expressions.html#atom-identifiers) 섹션을 보세요.
+
 
 ## 대화형 시작 파일
 
@@ -1803,6 +2074,24 @@ if filename and os.path.isfile(filename):
 
 - 이제 그 디렉터리에 `usercustomize.py` 라는 이름의 파일을 만들고 원하는 것들을 넣을 수 있습니다. 자동 임포트를 비활성화하는 [`-s`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-s) 옵션으로 시작하지 않는 한, 이 파일은 모든 파이썬 실행에 영향을 줍니다.
 - 사이트 사용자 정의는 같은 방식으로 작동하지만 일반적으로 컴퓨터 관리자가 글로벌 사이트 패키지 디렉터리에서 생성하며 사용자 정의 전에 가져옵니다. 사이트별 구성을 담당하는 모듈인 [`site`](https://docs.python.org/ko/3.12/library/site.html#module-site "사이트: 사이트별 구성을 담당하는 모듈.") 모듈의 문서를 참조하세요.
+
+## 확장 (Extensions)
+**CPython**
+- 원조이기도 하고 가장 잘 관리되고 있는 C로 작성된 파이썬 구현입니다. 언어의 새로운 기능은 보통 여기에서 처음 등장합니다.
+
+**Jython**
+- Java로 구현된 Python. 이 구현은 Java 애플리케이션의 스크립팅 언어로 사용하거나 Java 클래스 라이브러리를 사용하여 애플리케이션을 만드는 데 사용할 수 있습니다. 또한 Java 라이브러리에 대한 테스트를 생성하는 데 자주 사용됩니다. 자세한 내용은 [Jython 웹사이트](https://www.jython.org/)에서 확인할 수 있습니다.
+
+**Python for .NET**
+- 이 구현은 실제로는 CPython 구현을 사용하지만, 매니지드(managed) .NET 응용 프로그램이고 .NET 라이브러리를 제공합니다. Bryan Lloyd가 만들었습니다다. 더 자세한 정보는 [Python for .NET 홈페이지](https://pythonnet.github.io/) 에서 제공됩니다.
+
+**IronPython**
+- .NET용 대체 Python입니다. Python.NET과 달리 IL을 생성하고 Python 코드를 .NET 어셈블리로 직접 컴파일하는 완전한 Python 구현입니다. Jython의 원조인 Jim Hugunin이 만들었습니다. 자세한 내용은 [IronPython 웹사이트](https://ironpython.net/)를 참조하세요.
+
+**PyPy**
+- 완전히 파이썬으로 작성된 파이썬 구현입니다. 스택리스 지원 및 적시 컴파일러와 같이 다른 구현에서는 찾아볼 수 없는 여러 고급 기능을 지원합니다. 이 프로젝트의 목표 중 하나는 (파이썬으로 작성되었기 때문에) 인터프리터를 더 쉽게 수정할 수 있도록 하여 언어 자체에 대한 실험을 장려하는 것입니다. 자세한 정보는 [PyPy 프로젝트 홈페이지](https://www.pypy.org/)에서 확인할 수 있습니다.
+
+> 각 구현은 이 설명서에서 설명되는 언어와 조금씩 각기 다른 방법으로 벗어나거나, 표준 파이썬 문서에서 다루는 범위 밖의 특별한 정보들을 소개합니다. 여러분이 사용 중인 구현에 대해 어떤 것을 더 알아야 하는지 판단하기 위해서는 구현 별로 제공되는 문서를 참조할 필요가 있습니다.
 
 ---
 # 참조

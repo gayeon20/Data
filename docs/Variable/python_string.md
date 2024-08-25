@@ -126,8 +126,6 @@ String 은 Immutable 타입이므로 Index 를 사용한 변경이 불가능하�
 String 의 값을 변경하기 위해선 새로운 객체를 생성해야 한다.
 
 ## 포맷 문자열 리터럴 (f-string)
-> [2. 어휘 분석 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/lexical_analysis.html#f-strings)
-
 
 - 종종 단순히 스페이스로 구분된 값을 인쇄하는 것보다 출력 형식을 더 많이 제어해야 하는 경우가 있습니다. 출력을 포맷하는 데는 여러 가지 방법이 있습니다.
 - [포맷 문자열 리터럴](https://docs.python.org/ko/3.12/tutorial/inputoutput.html#tut-f-strings)을 사용하려면, 시작 인용 부호 또는 삼중 인용 부호 앞에 `f` 또는 `F` 를 붙여 문자열을 시작하십시오. 이 문자열 안에서, `{` 및 `}` 문자 사이에, 변수 또는 리터럴 값을 참조할 수 있는 파이썬 표현식을 작성할 수 있습니다.

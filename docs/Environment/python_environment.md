@@ -6,6 +6,7 @@ categories:
 tags:
   - Python
   - Virtual-Environment
+  - Environment-Variable
 last_modified_at: 2024-04-11T15:10:55+09:00
 link: 
 상위 항목: "[[python_home|파이썬 (Python)]]"
@@ -558,8 +559,409 @@ PYTHONWARNINGS=ignore   # Never warn
 - 이 옵션을 설정하면 파이썬은 인터프리터를 종료한 후에도 여전히 살아있는 객체와 참조 수를 _FILENAME_ 이라는 파일에 덤프합니다.
 - [`with-trace-refs`](https://docs.python.org/ko/3.12/using/configure.html#cmdoption-with-trace-refs) 빌드 옵션으로 구성된 Python이 필요합니다.
 
+## 개발자 모드 (Dev Mode)
+- 파이썬 개발 모드에는 기본적으로 활성화하기에 너무 비싼 추가 실행 시간 검사를 도입합니다. 코드가 올바르면 기본값보다 더 상세하지(verbose) 않아야 합니다; 새로운 경고는 문제가 감지될 때만 발생합니다.
+- [`-X dev`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-X) 명령 줄 옵션을 사용하거나 [`PYTHONDEVMODE`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONDEVMODE) 환경 변수를 `1`로 설정하여 활성화할 수 있습니다.
+
+### 파이썬 개발 모드의 효과
+
+- 파이썬 개발 모드를 활성화하는 것은 다음 명령과 유사하지만, 아래에 설명된 추가 효과가 있습니다:
+
+```sh
+PYTHONMALLOC=debug PYTHONASYNCIODEBUG=1 python -W default -X faulthandler
+```
+
+- `default` [경고 필터](https://docs.python.org/ko/3.12/library/warnings.html#describing-warning-filters)를 추가합니다. 다음과 같은 경고가 표시됩니다:
+	- [`DeprecationWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#DeprecationWarning "DeprecationWarning")
+	- [`ImportWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#ImportWarning "ImportWarning")
+	- [`PendingDeprecationWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#PendingDeprecationWarning "PendingDeprecationWarning")
+	- [`ResourceWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#ResourceWarning "ResourceWarning")
+  일반적으로, 위의 경고는 기본 [경고 필터](https://docs.python.org/ko/3.12/library/warnings.html#describing-warning-filters)가 필터링합니다.
+  [`-W default`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-W) 명령 줄 옵션이 사용된 것처럼 작동합니다.
+  경고를 에러로 처리하려면 [`-W error`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-W) 명령 줄 옵션을 사용하거나 [`PYTHONWARNINGS`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONWARNINGS) 환경 변수를 `error`로 설정하십시오.
+- 메모리 할당자에 디버그 훅을 설치하여 다음을 확인합니다:
+	- 버퍼 언더플로
+	- 버퍼 오버플로
+	- 메모리 할당자 API 위반
+	- GIL의 안전하지 않은 사용
+  [`PyMem_SetupDebugHooks()`](https://docs.python.org/ko/3.12/c-api/memory.html#c.PyMem_SetupDebugHooks "PyMem_SetupDebugHooks") C 함수를 참조하십시오.
+  [`PYTHONMALLOC`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONMALLOC) 환경 변수가 `debug`로 설정된 것처럼 동작합니다.
+  메모리 할당자에 디버그 훅을 설치하지 않고 파이썬 개발 모드를 사용하려면, [`PYTHONMALLOC`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONMALLOC) 환경 변수를 `default`로 설정하십시오.
+
+- 파이썬 시작 시 [`faulthandler.enable()`](https://docs.python.org/ko/3.12/library/faulthandler.html#faulthandler.enable "faulthandler.enable")를 호출하여 [`SIGSEGV`](https://docs.python.org/ko/3.12/library/signal.html#signal.SIGSEGV "signal.SIGSEGV"), [`SIGFPE`](https://docs.python.org/ko/3.12/library/signal.html#signal.SIGFPE "signal.SIGFPE"), [`SIGABRT`](https://docs.python.org/ko/3.12/library/signal.html#signal.SIGABRT "signal.SIGABRT"), [`SIGBUS`](https://docs.python.org/ko/3.12/library/signal.html#signal.SIGBUS "signal.SIGBUS") 및 [`SIGILL`](https://docs.python.org/ko/3.12/library/signal.html#signal.SIGILL "signal.SIGILL") 시그널에 대한 처리기를 설치하여 크래시 시 파이썬 트레이스백을 덤프할 수 있습니다.
+  
+  [`-X faulthandler`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-X) 명령 줄 옵션이 사용되거나 [`PYTHONFAULTHANDLER`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONFAULTHANDLER) 환경 변수가 `1`로 설정된 것처럼 작동합니다.
+
+- [asyncio 디버그 모드](https://docs.python.org/ko/3.12/library/asyncio-dev.html#asyncio-debug-mode)를 활성화합니다. 예를 들어, [`asyncio`](https://docs.python.org/ko/3.12/library/asyncio.html#module-asyncio "asyncio: Asynchronous I/O.")는 어웨이트 하지 않은 코루틴을 확인하고 이를 로그 합니다.
+  [`PYTHONASYNCIODEBUG`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONASYNCIODEBUG) 환경 변수가 `1`로 설정된 것처럼 동작합니다.
+- 문자열 인코딩과 디코딩 연산에 대해 _encoding_ 과 _errors_ 인자를 확인합니다. 예: [`open()`](https://docs.python.org/ko/3.12/library/functions.html#open "open"), [`str.encode()`](https://docs.python.org/ko/3.12/library/stdtypes.html#str.encode "str.encode") 및 [`bytes.decode()`](https://docs.python.org/ko/3.12/library/stdtypes.html#bytes.decode "bytes.decode").
+  
+  기본적으로, 최상의 성능을 위해, _errors_ 인자는 첫 번째 인코딩/디코딩 에러에서만 검사되며 빈 문자열에 대해서는 _encoding_ 인자가 무시되는 경우가 있습니다.
+
+- [`io.IOBase`](https://docs.python.org/ko/3.12/library/io.html#io.IOBase "io.IOBase") 파괴자는 `close()` 예외를 로그 합니다.
+- [`sys.flags`](https://docs.python.org/ko/3.12/library/sys.html#sys.flags "sys.flags")의 [`dev_mode`](https://docs.python.org/ko/3.12/library/sys.html#sys.flags.dev_mode "sys.flags.dev_mode") 속성을 `True`로 설정합니다.
+
+- 파이썬 개발 모드는 (성능과 메모리에 대한) 오버헤드 비용이 너무 비싸서, 기본적으로 [`tracemalloc`](https://docs.python.org/ko/3.12/library/tracemalloc.html#module-tracemalloc "tracemalloc: Trace memory allocations.") 모듈을 활성화하지 않습니다. [`tracemalloc`](https://docs.python.org/ko/3.12/library/tracemalloc.html#module-tracemalloc "tracemalloc: Trace memory allocations.") 모듈을 활성화하면 일부 에러의 원인에 대한 추가 정보가 제공됩니다. 예를 들어, [`ResourceWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#ResourceWarning "ResourceWarning")은 자원이 할당된 곳의 트레이스백을 로그하고, 버퍼 오버플로 에러는 메모리 블록이 할당된 곳의 트레이스백을 로그 합니다.
+- 파이썬 개발 모드는 [`-O`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-O) 명령 줄 옵션이 [`assert`](https://docs.python.org/ko/3.12/reference/simple_stmts.html#assert) 문을 제거하거나 [`__debug__`](https://docs.python.org/ko/3.12/library/constants.html#debug__ "__debug__")를 `False`로 설정하는 것을 막지 않습니다.
+- 파이썬 개발 모드는 파이썬을 시작할 때만 활성화할 수 있습니다. 해당 값은 [`sys.flags.dev_mode`](https://docs.python.org/ko/3.12/library/sys.html#sys.flags "sys.flags")에서 읽을 수 있습니다.
+
+> 버전 3.8에서 변경: [`io.IOBase`](https://docs.python.org/ko/3.12/library/io.html#io.IOBase "io.IOBase") 파괴자는 이제 `close()` 예외를 로그 합니다.
+> 버전 3.9에서 변경: _encoding_ 과 _errors_ 인자는 이제 문자열 인코딩과 디코딩 연산을 검사합니다.
+
+> [!example] `ResourceWarning` 예
+> 
+> - 명령 줄에 지정된 텍스트 파일의 줄 수를 세는 스크립트의 예:
+> 
+> ```python
+> import sys
+> 
+> def main():
+>     fp = open(sys.argv[1])
+>     nlines = len(fp.readlines())
+>     print(nlines)
+>     # The file is closed implicitly
+> 
+> if __name__ == "__main__":
+>     main()
+> ```
+> 
+> - 스크립트는 파일을 명시적으로 닫지 않습니다. 기본적으로, 파이썬은 아무런 경고도 하지 않습니다. 269 줄이 있는 README.txt를 사용하는 예:
+> 
+> ```sh
+> $ python script.py README.txt
+> 269
+> ```
+> 
+> 파이썬 개발 모드를 사용하면 [`ResourceWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#ResourceWarning "ResourceWarning") 경고가 표시됩니다:
+> 
+> ```sh
+> $ python -X dev script.py README.txt
+> 269
+> script.py:10: ResourceWarning: unclosed file <_io.TextIOWrapper name='README.rst' mode='r' encoding='UTF-8'>
+>   main()
+> ResourceWarning: Enable tracemalloc to get the object allocation traceback
+> ```
+> 
+> 또한, [`tracemalloc`](https://docs.python.org/ko/3.12/library/tracemalloc.html#module-tracemalloc "tracemalloc: Trace memory allocations.")을 활성화하면 파일이 열린 줄이 표시됩니다:
+> 
+> ```sh
+> $ python -X dev -X tracemalloc=5 script.py README.rst
+> 269
+> script.py:10: ResourceWarning: unclosed file <_io.TextIOWrapper name='README.rst' mode='r' encoding='UTF-8'>
+>   main()
+> Object allocated at (most recent call last):
+>   File "script.py", lineno 10
+>     main()
+>   File "script.py", lineno 4
+>     fp = open(sys.argv[1])
+> ```
+> - 수선은 파일을 명시적으로 닫는 것입니다. 컨텍스트 관리자를 사용하는 예:
+> 
+> ```python
+> def main():
+>     # Close the file explicitly when exiting the with block
+>     with open(sys.argv[1]) as fp:
+>         nlines = len(fp.readlines())
+>     print(nlines)
+> ```
+> 
+> - 자원을 명시적으로 닫지 않으면 예상보다 오래 자원을 열어둘 수 있습니다; 파이썬을 종료할 때 심각한 문제가 발생할 수 있습니다. CPython에서도 나쁘지만, PyPy에서는 더 나쁩니다. 리소스를 명시적으로 닫으면 응용 프로그램을 더 결정적이고 안정적으로 만들 수 있습니다.
+
+> [!example] 잘못된 파일 기술자 에러 예
+> 
+> - 자신의 첫 줄을 표시하는 스크립트:
+> 
+> ```python
+> import os
+> 
+> def main():
+>     fp = open(__file__)
+>     firstline = fp.readline()
+>     print(firstline.rstrip())
+>     os.close(fp.fileno())
+>     # The file is closed implicitly
+> 
+> main()
+> ```
+> 
+> - 기본적으로, 파이썬은 아무런 경고도 하지 않습니다:
+> 
+> ```sh
+> $ python script.py
+> import os
+> ```
+> 
+> - 파이썬 개발 모드는 [`ResourceWarning`](https://docs.python.org/ko/3.12/library/exceptions.html#ResourceWarning "ResourceWarning")을 표시하고 파일 객체를 파이널라이즈 할 때 “잘못된 파일 기술자(Bad file descriptor)” 에러를 로그 합니다:
+> 
+> ```sh
+> $ python -X dev script.py
+> import os
+> script.py:10: ResourceWarning: unclosed file <_io.TextIOWrapper name='script.py' mode='r' encoding='UTF-8'>
+>   main()
+> ResourceWarning: Enable tracemalloc to get the object allocation traceback
+> Exception ignored in: <_io.TextIOWrapper name='script.py' mode='r' encoding='UTF-8'>
+> Traceback (most recent call last):
+>   File "script.py", line 10, in `<module>`
+>     main()
+> OSError: [Errno 9] Bad file descriptor
+> ```
+> 
+> - `os.close(fp.fileno())`는 파일 기술자를 닫습니다. 파일 객체 파이널라이저가 파일 기술자를 다시 닫으려고 하면, `Bad file descriptor` 에러로 실패합니다. 파일 기술자는 한 번만 닫아야 합니다. 최악의 시나리오에서는, 두 번 닫을 때 충돌이 발생할 수 있습니다 (예는 [bpo-18748](https://bugs.python.org/issue?@action=redirect&bpo=18748)을 참조하십시오).
+> - 수선은 `os.close(fp.fileno())` 줄을 제거하거나, `closefd=False`로 파일을 여는 것입니다.
+
+### 디버그 빌드 (Debug Build)
+- 디버그 빌드는 [`--wydebug`](https://docs.python.org/ko/3.12/using/configure.html#cmdoption-with-pydebug) 구성 옵션으로 빌드한 Python입니다.
+- 기본적으로 모든 경고 표시: 기본 경고 필터 목록은 [`warnings`](https://docs.python.org/ko/3.12/library/warnings.html#module-warnings "warnings: 경고 메시지를 발행하고 처리를 제어합니다.") 모듈에서 기본 경고 필터 목록이 비어 있습니다.
+- [`sys.abiflags`](https://docs.python.org/ko/3.12/library/sys.html#sys.abiflags "sys.abiflags")에 `d`를 추가합니다.
+- [`sys.gettotalrefcount()` 함수를 추가합니다.
+- [`-X showrefcount`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-X) 명령줄 옵션을 추가합니다.
+- [`-d`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-d) 명령줄 옵션과 [`PYTHONDEBUG`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONDEBUG) 환경 변수를 추가하여 구문 분석기를 디버그할 수 있습니다.
+- 변수가 정의된 경우 바이트코드 평가 루프에서 저수준 추적을 활성화하는 `__lltrace__` 변수에 대한 지원 추가.
+- 메모리 할당자에 대한 디버그 훅](https://docs.python.org/ko/3.12/c-api/memory.html#default-memory-allocators)을 설치하여 버퍼 오버플로 및 기타 메모리 오류를 감지합니다.
+- `Py_DEBUG` 및 `Py_REF_DEBUG` 매크로를 정의합니다.
+- 런타임 검사 추가: `#ifdef Py_DEBUG` 및 `#endif`로 둘러싸인 코드. `assert(...)` 및 `_PyObject_ASSERT(...)` 어설션 활성화: `NDEBUG` 매크로를 설정하지 않습니다([`--with-assertions`](https://docs.python.org/ko/3.12/using/configure.html#cmdoption-with-assertions) 구성 옵션도 참조). 주요 런타임 검사:
+    - 함수 인자에 대한 건전성 검사 추가 
+    - 유니코드 및 int 객체는 초기화되지 않은 객체의 사용을 감지하는 패턴으로 메모리가 채워진 상태로 생성됩니다. 
+    - 현재 예외를 지우거나 대체할 수 있는 함수가 예외가 발생한 상태에서 호출되지 않는지 확인
+    - 할당 해제기 함수가 현재 예외를 변경하지 않는지 확인합니다.
+    - 가비지 컬렉터([`gc.collect()`](https://docs.python.org/ko/3.12/library/gc.html#gc.collect "gc.collect") 함수)는 객체 일관성에 대한 몇 가지 기본 검사를 실행합니다. 
+    - `Py_SAFE_DOWNCAST()` 매크로는 넓은 타입에서 좁은 타입으로 다운 캐스팅할 때 정수 언더플로우 및 오버플로우를 검사합니다.
+
+> 버전 3.8에서 변경: 이제 릴리스 빌드와 디버그 빌드가 ABI와 호환됩니다: `Py_DEBUG` 매크로를 정의하면 더 이상 `Py_TRACE_REFS` 매크로([`--with-trace-refs`](https://docs.python.org/ko/3.12/using/configure.html#cmdoption-with-trace-refs) 옵션 참조)를 의미하지 않아 유일한 ABI 비호환성을 유발합니다.
+
+### 디버그 옵션 (Debug options)
+
+`--with-pydebug`
+- [[#디버그 빌드 (Debug Build)]]: `Py_DEBUG` 매크로를 정의합니다(기본적으로 비활성화됨).
+
+`--with-trace-refs` (3.8 추가)
+- 디버깅 목적으로 추적 참조를 사용하도록 설정합니다(기본적으로 비활성화됨).
+  
+  효과:
+	- `Py_TRACE_REFS` 매크로를 정의합니다. 
+	- `sys.getobjects()` 함수를 추가합니다. 
+	- [`PYTHONDUMPREFS`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONDUMPREFS) 환경 변수를 추가합니다.
+   
+- 이 빌드는 릴리스 빌드(기본 빌드) 또는 디버그 빌드(`Py_DEBUG` 및 `Py_REF_DEBUG` 매크로)와 ABI가 호환되지 않습니다.
+
+`--with-assertions` (3.6 추가)
+- C 어설션을 활성화하여 빌드합니다(기본값은 아니요): `assert(...);` 및 `_PyObject_ASSERT(...);`.
+- 설정된 경우, `NDEBUG` 매크로는 [`OPT`](https://docs.python.org/ko/3.12/using/configure.html#envvar-OPT) 컴파일러 변수에 정의되지 않습니다.
+- 어설션을 활성화하는 [`--with-pydebug`](https://docs.python.org/ko/3.12/using/configure.html#cmdoption-with-pydebug) 옵션([debug build](https://docs.python.org/ko/3.12/using/configure.html#debug-build)도 참조하십시오.
+
+`--with-valgrind`
+- Valgrind 지원을 활성화합니다(기본값은 아니요).
+
+`--with-dtrace` (3.6 추가)
+- DTrace 지원을 활성화합니다(기본값은 아니요).
+- [DTrace 및 SystemTap으로 CPython 계측하기](https://docs.python.org/ko/3.12/howto/instrumentation.html#instrumentation)를 참조하세요.
+
+`--with-address-sanitizer` (3.6 추가)
+- AddressSanitizer 메모리 오류 탐지기 'asan'을 활성화합니다(기본값은 아니요).
+
+`--with-memory-sanitizer` (3.6 추가)
+- 메모리 새니타이저 할당 오류 감지기인 `msan`을 활성화합니다(기본값은 아니요).
+
+`--with-undefined-behavior-sanitizer` (3.6 추가)
+- 정의되지 않은 동작 탐지기를 활성화합니다(기본값은 아니요).
+
+
+## 빌드 설정
+[3. Python 구성 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/using/configure.html)
+
+
+### 성능 옵션 (Performance options)
+- 최상의 성능을 위해 `--enable-optimizations --with-lto`(PGO + LTO)를 사용하여 Python을 구성하는 것이 좋습니다. 실험적인 `--enable-bolt` 플래그를 사용하여 성능을 개선할 수도 있습니다.
+
+`--enable-optimizations` (3.6 추가)
+- 프로파일 가이드 최적화(PGO)를 [`PROFILE_TASK`](https://docs.python.org/ko/3.12/using/configure.html#envvar-PROFILE_TASK)를 사용하여 활성화합니다(기본적으로 비활성화됨).
+- C 컴파일러 Clang은 PGO를 위해 `llvm-profdata` 프로그램이 필요합니다. macOS에서는 GCC에도 필요합니다: GCC는 macOS에서 Clang의 별칭일 뿐입니다.
+- libpython에서 `--enable-shared`를 사용하고 GCC를 사용하는 경우 컴파일러 및 링커 플래그에 `-fno-semantic-interposition`을 추가하여 의미론적 삽입도 비활성화합니다.
+
+
+> 빌드 중에 일부 소스 파일에 프로필 데이터를 사용할 수 없다는 컴파일러 경고가 표시될 수 있습니다. 이러한 경고는 프로필 데이터를 수집하는 동안 코드의 일부만 실행되므로 무해합니다. Clang에서 이러한 경고를 비활성화하려면 [`CFLAGS`](https://docs.python.org/ko/3.12/using/configure.html#envvar-CFLAGS)에 `-Wno-profile-instr-unprofiled`를 추가하여 수동으로 비활성화하세요.
+
+> 버전 3.10에서 변경: GCC에서 `-fno-semantic-interposition`을 사용합니다.
+
+`PROFILE_TASK` (3.8 추가)
+- Makefile에 사용되는 환경 변수입니다: PGO 생성 작업을 위한 Python 명령줄 인수입니다.
+
+Default: `-m test --pgo --timeout=$(TESTTIMEOUT)`.
+
+`--with-lto=[full|thin|no|yes]` (3.6 추가)
+- 모든 빌드에서 링크 시간 최적화(LTO)를 활성화합니다(기본적으로 비활성화됨). C 컴파일러 Clang은 LTO를 위해 `llvm-ar`(macOS에서는 `ar`)와 LTO 인식 링커(`ld.gold` 또는 `lld`)를 필요로 합니다.
+
+> 3.11 추가: ThinLTO 기능을 사용하려면 Clang에서 `--with-lto=thin`을 사용하세요.
+
+> 버전 3.12에서 변경: 컴파일러가 이 플래그를 수락하면 Clang의 기본 최적화 정책으로 ThinLTO를 사용합니다.
+
+`--enable-bolt` (3.12 추가)
+- BOLT 포스트 링크 바이너리 옵티마이저](https://github.com/llvm/llvm-project/tree/main/bolt) 사용을 활성화합니다(기본적으로 비활성화됨).
+- BOLT는 LLVM 프로젝트의 일부이지만 바이너리 배포에 항상 포함되지는 않습니다. 이 플래그를 사용하려면 `llvm-bolt` 및 `merge-fdata`를 사용할 수 있어야 합니다.
+- BOLT는 아직 상당히 새로운 프로젝트이므로 이 플래그는 현재로서는 실험적인 것으로 간주해야 합니다. 이 도구는 머신 코드에서 작동하므로 빌드 환경 + 기타 최적화 구성 인수 + CPU 아키텍처의 조합에 따라 성공 여부가 결정되며 모든 조합이 지원되는 것은 아닙니다. LLVM 16 이전의 BOLT 버전은 일부 시나리오에서 BOLT가 충돌하는 것으로 알려져 있습니다. BOLT 최적화를 위해서는 LLVM 16 이상을 사용할 것을 강력히 권장합니다.
+- `BOLT_INSTRUMENT_FLAGS` 및 `BOLT_APPLY_FLAGS` **configure** 변수를 정의하여 각각 **llvm-bolt**의 기본 인수 집합을 재정의하여 바이너리에 볼트 데이터를 계측 및 적용하도록 할 수 있습니다.
+
+`--with-computed-gotos`
+- 평가 루프에서 계산된 고토를 활성화합니다(지원되는 컴파일러에서 기본적으로 활성화됨).
+
+`--without-pymalloc`
+- 특수 파이썬 메모리 할당자 [pymalloc](https://docs.python.org/ko/3.12/c-api/memory.html#pymalloc)(기본적으로 활성화됨)를 비활성화합니다. 
+- [`PYTHONMALLOC`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONMALLOC) 환경 변수를 참조하십시오.
+
+`--without-doc-strings
+- 정적 문서 문자열을 비활성화하여 메모리 사용량을 줄입니다(기본적으로 활성화됨). 
+- 파이썬에 정의된 문서 문자열은 영향을 받지 않습니다. 
+- `WITH_DOC_STRINGS` 매크로를 정의하지 마세요. 
+- `PyDoc_STRVAR()` 매크로를 참조하세요.
+
+`--enable-profiling`
+- `gprof`로 C레벨 코드 프로파일링을 활성화합니다(기본적으로 비활성화됨).
+
+`--with-strict-overflow`
+C 컴파일러 플래그에 `-fstrict-overflow`를 추가합니다(기본값은 `-fno-strict-overflow` 대신 추가합니다).
+
+
+## 운영체제 별 Python
+
+### Unix
+#### 최신 버전의 파이썬 내려받기와 설치
+
+##### 리눅스
+
+- 파이썬은 대부분 리눅스 배포판에 사전 설치되어 있으며, 다른 모든 곳에서 패키지로 사용할 수 있습니다. 그러나 배포판 패키지에 없는 어떤 기능을 사용하고 싶을 수 있습니다. 소스에서 최신 버전의 파이썬을 쉽게 컴파일할 수 있습니다.
+- 파이썬이 미리 설치되어 있지 않고 저장소에도 없으면, 여러분 자신의 배포를 위한 패키지를 쉽게 만들 수 있습니다. 다음 링크를 살펴보십시오:
+
+> [!NOTE] 패키지
+> **데비안 사용자용**
+> [https://www.debian.org/doc/manuals/maint-guide/first.en.html](https://www.debian.org/doc/manuals/maint-guide/first.en.html)
+> 
+> **OpenSuse 사용자용**
+> [https://en.opensuse.org/Portal:Packaging](https://en.opensuse.org/Portal:Packaging)
+> 
+> **Fedora 사용자용**
+> [https://docs.fedoraproject.org/en-US/package-maintainers/Packaging_Tutorial_GNU_Hello/](https://docs.fedoraproject.org/en-US/package-maintainers/Packaging_Tutorial_GNU_Hello/)
+> 
+> **Slackware 사용자용**
+> [https://slackbook.org/html/package-management-making-packages.html](https://slackbook.org/html/package-management-making-packages.html)
+> 
+
+
+##### FreeBSD와 OpenBSD
+- FreeBSD 사용자, 패키지를 추가하려면 이렇게 하십시오:
+
+```sh
+pkg install python3
+```
+
+- OpenBSD 사용자, 패키지를 추가하려면 이렇게 하십시오:
+
+```sh
+pkg_add -r python
+
+pkg_add ftp://ftp.openbsd.org/pub/OpenBSD/4.2/packages/<insert your architecture here>/python-<version>.tgz
+```
+
+- 예를 들어 i386 사용자는 이렇게 파이썬 2.5.1 버전을 얻습니다:
+
+```sh
+pkg_add ftp://ftp.openbsd.org/pub/OpenBSD/4.2/packages/i386/python-2.5.1p2.tgz
+```
+
+#### 파이썬 빌드하기
+
+- CPython을 직접 컴파일하려면 먼저 [소스](https://www.python.org/downloads/source/)를 구해야 합니다. 최신 릴리스의 소스를 다운로드하거나 새 [클론](https://devguide.python.org/setup/#get-the-source-code)을 가져올 수 있습니다. (패치를 기여하려면 클론이 필요합니다.)
+- 빌드 프로세스는 일반적으로 다음과 같은 명령으로 구성됩니다
+
+```
+./configure
+make
+make install
+```
+
+- 특정 Unix 플랫폼에 대한 [구성 옵션](https://docs.python.org/ko/3.12/using/configure.html#configure-options) 및 주의 사항은 Python 소스 트리의 루트에 있는 [README.rst](https://github.com/python/cpython/tree/3.12/README.rst) 파일에 광범위하게 문서화되어 있습니다.
+
+
+> [!warning]
+> - `make install`은 `python3` 바이너리를 덮어쓰거나 가장 할 수 있습니다. 따라서 `make altinstall`을 `make install` 대신 권장하는데, `_exec_prefix_/bin/python_version_` 만 설치하기 때문입니다.
+
+#### 파이썬 관련 경로와 파일
+
+- 이는 현지 설치 규칙에 따라 다를 수 있으며, [`prefix`](https://docs.python.org/ko/3.12/using/configure.html#cmdoption-prefix) 및 [`exec_prefix`](https://docs.python.org/ko/3.12/using/configure.html#cmdoption-exec-prefix)는 설치에 따라 다르며 GNU 소프트웨어의 경우와 동일하게 해석해야 합니다.
+- 예를 들어, 대부분 리눅스 시스템에서, 기본값은 모두 `/usr`입니다.
+
+| 파일/디렉터리                                                                     | 의미                                                        |
+| --------------------------------------------------------------------------- | --------------------------------------------------------- |
+| `_exec_prefix_/bin/python3`                                                 | 인터프리터의 권장 위치.                                             |
+| `_prefix_/lib/python_version_`, `_exec_prefix_/lib/python_version_`         | 표준 모듈을 포함하는 디렉터리의 권장 위치.                                  |
+| `_prefix_/include/python_version_`, `_exec_prefix_/include/python_version_` | 파이썬 확장을 개발하고 인터프리터를 내장하는 데 필요한 인클루드 파일을 포함하는 디렉터리의 권장 위치. |
+
+#### 파이썬 스크립트 만들기
+- 유닉스에서 파이썬 스크립트를 쉽게 사용하려면, 실행 파일로 만들어야 합니다.
+- 스크립트는 **chmod** 명령을 사용하여 실행 가능한 모드, 또는 권한, 을 부여받을 수 있습니다.
+
+```sh
+$ chmod +x myscript.py
+```
+
+- 윈도우 시스템에서는 “실행 가능 모드”라는 개념이 없습니다. 파이썬 설치 프로그램은 `.py` 파일을 `python.exe`와 자동으로 연결하여, 파이썬 파일을 이중 클릭하면 스크립트로 실행합니다. 확장자는 `.pyw` 일 수도 있습니다. 이 경우, 일반적으로 나타나는 콘솔 창은 표시되지 않습니다.
+- 그리고, 스크립트의 상단에 적절한 셔뱅(Shebang) 줄을 넣습니다. 좋은 선택은 대개 이렇습니다. BSD 스타일의 유닉스 시스템에서 파이썬 스크립트는 셸 스크립트처럼 직접 실행할 수 있게 만들 수 있습니다. 다음과 같은 줄
+
+```python
+#!/usr/bin/env python3
+```
+
+- (인터프리터가 사용자의 `PATH` 에 있다고 가정할 때)을 스크립트의 시작 부분에 넣고 파일에 실행 가능 모드를 줍니다. `#!` 는 반드시 파일의 처음 두 문자여야 합니다. 일부 플랫폼에서는 이 첫 번째 줄이 유닉스 스타일의 줄 종료 (`'\n'`)로 끝나야 하며, 윈도우 줄 종료(`'\r\n'`)는 허락되지 않습니다. 파이썬에서 해시, 또는 파운드, 문자 `'#'` 는 주석을 시작하는 데 사용됩니다.
+- 이것은 `PATH` 전체에서 파이썬 인터프리터를 검색합니다. 그러나, 일부 유닉스에는 **env** 명령이 없을 수 있으므로, 인터프리터 경로로 `/usr/bin/python3`를 하드 코딩해야 할 수 있습니다.
+- 파이썬 스크립트에서 셸 명령을 사용하려면, [`subprocess`](https://docs.python.org/ko/3.12/library/subprocess.html#module-subprocess "subprocess: Subprocess management.") 모듈을 보십시오.
+
+#### 사용자 지정 OpenSSL
+
+1. 공급업체의 OpenSSL 구성 및 시스템 신뢰 저장소를 사용하려면 `/etc`에서 `openssl.cnf` 파일 또는 심볼릭 링크가 있는 디렉터리를 찾습니다. 대부분의 배포판에서 이 파일은 `/etc/ssl` 또는 `/etc/pki/tls`에 있습니다. 디렉터리에는 `cert.pem` 파일 및/또는 `certs` 디렉터리도 포함되어야 합니다..
+
+```sh
+$ find /etc/ -name openssl.cnf -printf "%h\n"
+/etc/ssl
+```
+
+2. OpenSSL을 다운로드, 빌드 및 설치합니다. 설치`가 아닌 `install_sw`를 사용해야 합니다. install_sw` 타겟은 `openssl.cnf`를 재정의하지 않습니다.
+
+```sh
+$ curl -O https://www.openssl.org/source/openssl-VERSION.tar.gz
+$ tar xzf openssl-VERSION
+$ pushd openssl-VERSION
+$ ./config \
+	--prefix=/usr/local/custom-openssl \
+	--libdir=lib \
+	--openssldir=/etc/ssl
+$ make -j1 depend
+$ make -j8
+$ make install_sw
+$ popd
+```
+
+3. 사용자 지정 OpenSSL로 Python 빌드(`--with-openssl` 및 `--with-openssl-rpath` 옵션 구성 참조).
+
+```python
+$ pushd python-3.x.x
+$ ./configure -C \
+	--with-openssl=/usr/local/custom-openssl \
+	--with-openssl-rpath=auto \
+	--prefix=/usr/local/python-3.x.x
+$ make -j8
+$ make altinstall
+```
+
+> OpenSSL의 패치 릴리스에는 이전 버전과 호환되는 ABI가 있습니다. OpenSSL을 업데이트하기 위해 Python을 다시 컴파일할 필요는 없습니다. 사용자 지정 OpenSSL 설치를 최신 버전으로 교체하는 것으로 충분합니다.
+
+### Windows
+[4. 윈도우에서 파이썬 사용하기 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/using/windows.html)
+
+### Mac
+[5. Using Python on a Mac — Python 3.12.5 문서](https://docs.python.org/ko/3.12/using/mac.html)
+
 ---
 
-## 예제
 
 ## 참조
+
+
