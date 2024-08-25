@@ -18,11 +18,25 @@ link:
 
 - 프로그램의 출력을 표현하는 여러 가지 방법이 있습니다; 사람이 일기에 적합한 형태로 데이터를 인쇄할 수도 있고, 나중에 사용하기 위해 파일에 쓸 수도 있습니다.
 
-## 장식적인 출력 포매팅
 
-- 지금까지 값을 작성하는 두 가지 방법을 살펴봤습니다: 표현식 문과 [`print()`](https://docs.python.org/ko/3.12/library/functions.html#print “print”) 함수. (세 번째 방법은 파일 객체의 [`write()`](https://docs.python.org/ko/3.12/library/io.html#io.TextIOBase.write “io.TextIOBase.write”) 메서드를 사용하는 것인데, 표준 출력 파일은 `sys.stdout`으로 참조할 수 있습니다. 이에 대한 자세한 내용은 라이브러리 참조를 참조하세요.)
+## 문자 입출력
 
-## 파일을 읽고 쓰기
+```python
+print("Hello world")
+```
+- `print` 함수로 메시지를 출력할 수 있습니다.
+
+```python
+variable = input("설명 메시지")
+```
+
+- `input`은 입력한 값을 문자열 (`str`) 타입으로 저장합니다.
+- `"설명 메시지"`는 설명을 위해 출력할 메시지를 결정합니다.
+- 프로그램의 출력을 표현하는 여러 가지 방법이 있습니다; 사람이 일기에 적합한 형태로 데이터를 인쇄할 수도 있고, 나중에 사용하기 위해 파일에 쓸 수도 있습니다.
+
+- 값을 작성하는 두 가지 방법: 표현식 문과 [`print()`](https://docs.python.org/ko/3.12/library/functions.html#print “print”) 함수 외에 세 번째 방법은 파일 객체의 [`write()`](https://docs.python.org/ko/3.12/library/io.html#io.TextIOBase.write “io.TextIOBase.write”) 메서드를 사용하는 것인데, 표준 출력 파일은 `sys.stdout`으로 참조할 수 있습니다.
+
+## 파일 입출력
 
 - [`open()`](https://docs.python.org/ko/3.12/library/functions.html#open "open")은 [파일 객체](https://docs.python.org/ko/3.12/glossary.html#term-file-object)를 반환하며, 두 개의 위치 인수와 하나의 키워드 인수인 `open(filename, mode, encoding=None)`과 함께 가장 일반적으로 사용됩니다.
 
@@ -167,6 +181,7 @@ x = json.load(f)
 
 ### [`pickle`](https://docs.python.org/ko/3.12/library/pickle.html#module-pickle "pickle: Convert Python objects to streams of bytes and back.") - 피클 모듈
 - [JSON](https://docs.python.org/ko/3.12/tutorial/inputoutput.html#tut-json) 에 반해, _pickle_ 은 임의의 복잡한 파이썬 객체들을 직렬화할 수 있는 프로토콜입니다. 파이썬에 국한되고 다른 언어로 작성된 응용 프로그램들과 통신하는데 사용될 수 없습니다. 기본적으로 안전하지 않기도 합니다: 믿을 수 없는 소스에서 온 데이터를 역 직렬화할 때, 숙련된 공격자에 의해 데이터가 조작되었다면 임의의 코드가 실행될 수 있습니다.
+
 
 ---
 ## 참조

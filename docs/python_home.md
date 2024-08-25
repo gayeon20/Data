@@ -9,7 +9,7 @@ tags:
   - Operator
 last_modified_at: 2024-04-11T15:10:55+09:00
 link: https://docs.python.org/ko/3/
-상위 항목:
+상위 항목: "[[software_language|소프트웨어 언어 (Software Language)]]"
 ---
 
 **최초 작성일**: `:::this.file.cday`
@@ -18,14 +18,22 @@ link: https://docs.python.org/ko/3/
 **하위 항목**
 - [[python_control|파이썬 제어문 (Python Control)]]
 - [[python_function|파이썬 함수 (Python Function)]]
+- [[python_input_output|파이썬 입출력 (Python Input & Output)]]
 - [[python_module|파이썬 모듈 (Python Module)]]
 - [[python_variable|파이썬 변수 (Python Variable)]]
 ---
-- [10. 표준 라이브러리 둘러보기 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/tutorial/stdlib.html)
-- [내장 함수 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/functions.html#enumerate)
-- [내장형 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/stdtypes.html#old-string-formatting)
-- [2. 어휘 분석 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/lexical_analysis.html#f-strings)
-- [string — Common string operations — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/string.html#formatstrings)
+- [ ] [2. 유닉스 플랫폼에서 파이썬 사용하기 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/using/unix.html)
+- [ ] [파이썬 언어 레퍼런스 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/index.html#reference-index)
+- [ ] [내장 함수 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/functions.html#enumerate)
+- [ ] [내장형 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/stdtypes.html#old-string-formatting)
+- [ ] [2. 어휘 분석 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/lexical_analysis.html#f-strings)
+- [ ] [string — Common string operations — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/string.html#formatstrings)
+
+# Python 언어
+
+> [!summary]
+> > 다음 내용은 Python 언어의 특징을 다룹니다.
+> - [[#인터프리터 (Interpreter)]]
 
 
 - 전문 소프트웨어 개발자라면, 여러 C/C++/Java 라이브러리들을 갖고 작업해야만 할 수 있는데, 일반적인 코드작성/컴파일/테스트/재컴파일 순환이 너무 느리다는 것을 깨닫게 됩니다. 어쩌면 그 라이브러리들을 위한 테스트 스위트를 작성하다가, 테스트 코드 작성에 따분해하는 자신을 발견하게 됩니다. 또는 확장 언어를 사용하는 프로그램을 작성했는데, 완전히 새로운 언어 전체를 설계하고 구현하고 싶지 않을 수 있습니다. 파이썬은 바로 여러분을 위한 언어입니다.
@@ -41,8 +49,6 @@ link: https://docs.python.org/ko/3/
   
 - 파이썬은 _확장 가능_ 하다: C로 프로그램하는 법을 안다면, 인터프리터에 새로운 내장 함수나 자료형을 추가해서, 핵심 연산을 최대 속도로 수행하거나 바이너리 형태로만 제공되는 라이브러리(가령 업체가 제공하는 그래픽스 라이브러리)에 파이썬 프로그램을 연결할 수 있습니다. 진짜 파이썬에 매료되었다면, C로 만든 응용 프로그램에 파이썬 인터프리터를 연결하여 그 응용 프로그램의 확장이나 명령 언어로 사용할 수 있습니다.
 - 파이썬 이라는 이름은 “Monty Python’s Flying Circus”라는 BBC 쇼에서 따온 것이고, 파충류와는 아무런 관련이 없습니다. 문서에서 Monty Python의 농담을 인용하는 것은 허락된 것일 뿐만 아니라, 권장되고 있습니다.
-- 이제 여러분은 파이썬에 한껏 흥분한 상태고 좀 더 자세히 들여다보길 원할 것입니다. 언어를 배우는 가장 좋은 방법은 사용하는 것이기 때문에, 직접 파이썬 인터프리터를 만져볼 것을 권합니다.
-- 자습서의 나머지는 파이썬 언어와 시스템의 여러 기능을 예제를 통해 소개합니다. 간단한 표현식, 문장, 자료형에서 출발해서 함수와 모듈을 거쳐, 마지막으로 예외와 사용자 정의 클래스와 같은 고급 개념들을 다룹니다.
 
 
 ## 인터프리터 (Interpreter)
@@ -112,6 +118,28 @@ Be careful not to fall off!
 # -*coding: cp1252 -*-
 ```
 
+---
+# Python 초급
+> [!summary]
+> > 다음 내용은 Python 프로그램을 구성하는 기본적인 문법을 다룹니다.
+> > Python을 사용한다면 반드시 알아야 할 내용입니다.
+> - [[#주석 (Comment)]]
+> - [[#변수 (Variable) python_variable (자세히 보기)|변수 (Variable)]]
+> - [[#제어문 (Control) python_control (자세히 보기)|제어문 (Control)]]
+
+
+> [!NOTE] 문자 입출력
+> ```python
+> print("Hello world")
+> ```
+> - `print` 함수로 메시지를 출력할 수 있습니다.
+> 
+> ```python
+> variable = input("설명 메시지")
+> ```
+> - `input`은 입력한 값을 문자열 (`str`) 타입으로 저장합니다.
+> - `"설명 메시지"`는 설명을 위해 출력할 메시지를 결정합니다.
+> - 프로그램의 출력을 표현하는 여러 가지 방법이 있습니다; 사람이 일기에 적합한 형태로 데이터를 인쇄할 수도 있고, 나중에 사용하기 위해 파일에 쓸 수도 있습니다.
 
 ## 주석 (Comment)
 
@@ -808,6 +836,17 @@ for value in range(5):
 
 - `pass` 는 아무 문장도 실행하지 않는다. 특정 조건을 충족했을 때 아무 문장도 실행하지 말아야 할 경우에 주로 활용된다.
 
+---
+# Python 중급
+> [!summary]
+> > 다음 내용은 Python 프로그램을 구성하는 객체 단위를 다룹니다.
+> > Python 프로그램의 구성을 이해하여 다른 사람이 작성한 코드를 읽고, 
+> > 올바르게 작성하기 위해 알아야 할 내용입니다. 
+> - [[#코딩 스타일]]
+> - [[#함수 python_function (자세히 보기)|함수 (Functions)]]
+> - [[python_class|클래스 (Class)]]
+> - [[#모듈 (Module) python_module (자세히 보기)|모듈 (Module)]]
+
 
 ## 코딩 스타일
 - 이제 여러분은 파이썬의 더 길고, 더 복잡한 조각들을 작성하려고 합니다, 코딩 스타일에 대해 말할 적절한 시간입니다. 
@@ -826,7 +865,7 @@ for value in range(5):
 
 
 
-## 함수 [[python_function|(자세히 보기)]]
+## 함수 (Functions) [[python_function|(자세히 보기)]]
 
 - 키워드 [`def`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#def)는 함수 정의를 시작합니다. 함수 이름과 괄호로 싸인 형식 매개변수들의 목록이 뒤따릅니다. 함수의 바디를 형성하는 문장들이 다음 줄에서 시작되고, 반드시 들여쓰기 되어야 합니다.
 - 피보나치 수열을 임의의 한도까지 출력하는 함수를 만들 수 있습니다:
@@ -859,6 +898,181 @@ print(len("Hello")) # 결과: 5
 ```
 
 - `len(variable)` 은 입력한 iterable 의 길이를 반환한다.
+
+
+## 클래스 (Class) [[python_class|(자세히 보기)]]
+- 클래스는 데이터와 기능을 함께 묶는 방법을 제공합니다. 새 클래스를 만드는 것은 객체의 새 _형_ 을 만들어서, 그 형의 새 인스턴스 를 만들 수 있도록 합니다. 각 클래스 인스턴스는 상태를 유지하기 위해 그 자신에게 첨부된 어트리뷰트를 가질 수 있습니다. 클래스 인스턴스는 상태를 바꾸기 위한 (클래스에 의해 정의된) 메서드도 가질 수 있습니다.
+
+### 클래스 정의 문법
+
+- 클래스 정의의 가장 간단한 형태는 이렇게 생겼습니다:
+
+```python
+class ClassName:
+    <statement-1>
+    .
+    .
+    .
+    <statement-N>
+```
+
+- 함수 정의([`def`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#def) 문)처럼, 클래스 정의는 어떤 효과가 생기기 위해서는 먼저 실행되어야 합니다. (상상컨대 클래스 정의를 [`if`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#if) 문의 분기나 함수 내부에 놓을 수 있습니다)
+- 실재적으로, 클래스 정의 내부의 문장들은 보통 함수 정의들이지만, 다른 문장들도 허락되고 때로 쓸모가 있습니다 — 나중에 이 주제로 돌아올 것입니다. 클래스 내부의 함수 정의는 보통, 메서드 호출 규약의 영향을 받은, 특별한 형태의 인자 목록을 갖습니다. — 다시, 이것은 뒤에서 설명됩니다.
+- 클래스 정의에 진입할 때, 새 이름 공간이 만들어지고 지역 스코프로 사용됩니다 — 그래서, 모든 지역 변수들로의 대입은 이 새 이름 공간으로 갑니다. 특히, 함수 정의는 새 함수의 이름을 이곳에 연결합니다.
+- 클래스 정의가 정상적으로 끝나면 (끝을 통해) class object가 생성됩니다. 이것은 기본적으로 클래스 정의에 의해 생성된 네임스페이스의 내용을 감싸는 래퍼이며, 다음 섹션에서 클래스 객체에 대해 자세히 알아보겠습니다. 원래 로컬 범위(클래스 정의가 입력되기 직전에 유효했던 범위)가 복원되고 클래스 객체는 여기에 클래스 정의 헤더에 지정된 클래스 이름(예제에서는 `ClassName`)에 바인딩됩니다.
+
+### 클래스 객체
+- 클래스 객체는 두 종류의 연산을 지원합니다: 어트리뷰트 참조와 인스턴스 만들기.
+- _어트리뷰트 참조_ 는 파이썬의 모든 어트리뷰트 참조에 사용되는 표준 문법을 사용합니다: `obj.name`. 올바른 어트리뷰트 이름은 클래스 객체가 만들어질 때 클래스의 이름 공간에 있던 모든 이름입니다. 그래서, 클래스 정의가 이렇게 될 때:
+
+```python
+class MyClass:
+    """A simple example class"""
+    i = 12345
+
+    def f(self):
+        return 'hello world'
+```
+
+인 경우 `MyClass.i`와 `MyClass.f`는 각각 정수와 함수 객체를 반환하는 유효한 어트리뷰트 참조입니다. 클래스 어트리뷰트도 할당할 수 있으므로 할당을 통해 `MyClass.i`의 값을 변경할 수 있습니다. '`__doc__`도 유효한 어트리뷰트로, 클래스에 속하는 문서 문자열을 반환합니다: "간단한 예제 클래스"`를 반환합니다.
+- 클래스 _인스턴스 만들기_ 는 함수 표기법을 사용합니다. 클래스 객체가 클래스의 새 인스턴스를 돌려주는 매개변수 없는 함수인 체합니다. 예를 들어 (위의 클래스를 가정하면):
+
+```python
+x = MyClass()
+```
+
+는 클래스의 새 _인스턴스_ 를 만들고 이 객체를 지역 변수 `x` 에 대입합니다.
+
+- 인스턴스화 작업('클래스 객체 호출')은 빈 객체를 생성합니다. 많은 클래스는 특정 초기 상태에 맞게 사용자 정의된 인스턴스로 객체를 생성하는 것을 좋아합니다. 따라서 클래스는 다음과 같이 [`__init__()`](https://docs.python.org/ko/3.12/reference/datamodel.html#object.__init__ "object.__init__")라는 특수 메서드를 정의할 수 있습니다:
+
+```python
+def __init__(self):
+    self.data = []
+```
+
+- 클래스가 [`__init__()`](https://docs.python.org/ko/3.12/reference/datamodel.html#object.__init__ "object.__init__") 메서드를 정의하면, 클래스 인스턴스화는 새로 생성된 클래스 인스턴스에 대해 자동으로 `__init__()`를 호출합니다. 따라서 이 예제에서는 다음과 같이 초기화된 새 인스턴스를 얻을 수 있습니다:
+
+```python
+x = MyClass()
+```
+
+- 물론 [`__init__()`](https://docs.python.org/ko/3.12/reference/datamodel.html#object.__init__ "object.__init__") 메서드에는 유연성을 높이기 위해 인수가 있을 수 있습니다. 이 경우 클래스 인스턴스화 연산자에 주어진 인수는 `__init__()`에 전달됩니다. 예를 들어
+
+```python
+>>> class Complex:
+…     def __init__(self, realpart, imagpart):
+…         self.r = realpart
+…         self.i = imagpart
+…
+>>> x = Complex(3.0, -4.5)
+>>> x.r, x.i
+(3.0, -4.5)
+```
+
+### 인스턴스 객체
+
+- 이제 인스턴스 객체로 무엇을 할 수 있을까? 인스턴스 객체가 이해하는 오직 한가지 연산은 어트리뷰트 참조입니다. 두 가지 종류의 올바른 어트리뷰트 이름이 있습니다: 데이터 어트리뷰트와 메서드.
+- 데이터 어트리뷰트_는 Smalltalk에서는 "인스턴스 변수"에, C++에서는 "데이터 멤버"에 해당합니다. 데이터 어트리뷰트는 선언할 필요가 없으며, 지역 변수와 마찬가지로 처음 할당될 때 존재하게 됩니다. 예를 들어 `x`가 위에서 만든 `MyClass`의 인스턴스라면, 다음 코드는 흔적을 남기지 않고 `16`이라는 값을 출력합니다:
+
+```python
+x.counter = 1
+while x.counter < 10:
+    x.counter = x.counter * 2
+print(x.counter)
+del x.counter
+```
+
+- 다른 종류의 인스턴스 어트리뷰트 참조는 method_입니다. 메서드는 객체에 '속하는' 함수입니다.
+- 인스턴스 객체의 올바른 메서드 이름은 그것의 클래스에 달려있습니다. 정의상, 함수 객체인 클래스의 모든 어트리뷰트들은 상응하는 인스턴스의 메서드들을 정의합니다. 그래서 우리의 예제에서, `x.f` 는 올바른 메서드 참조인데, `MyClass.f` 가 함수이기 때문입니다. 하지만 `x.i` 는 그렇지 않은데, `MyClass.i` 가 함수가 아니기 때문입니다. 그러나, `x.f` 는 `MyClass.f` 와 같은 것이 아닙니다 — 이것은 함수 객체가 아니라 _메서드 객체_ 입니다.
+
+### 메서드 객체
+- 보통, 메서드는 연결되자마자 호출됩니다:
+
+```python
+x.f()
+```
+
+- `MyClass` 예제에서는 'hello world'라는 문자열을 반환합니다. 그러나 메서드를 바로 호출할 필요는 없습니다. `x.f`는 메서드 객체이므로 저장해 두었다가 나중에 호출할 수 있습니다. 예를 들어
+
+```python
+xf = x.f
+while True:
+    print(xf())
+```
+
+는 영원히 계속 `hello world` 를 인쇄합니다.
+
+- 메서드가 호출되면 정확히 어떤 일이 일어날까요? 위에서 `f()`의 함수 정의에 인수가 지정되어 있음에도 불구하고 `x.f()`가 인자 없이 호출된 것을 보셨을 것입니다. 인수는 어떻게 된 걸까요? 인수가 필요한 함수가 인자 없이 호출될 때, 인수가 실제로 사용되지 않더라도 파이썬은 예외를 발생시킵니다….
+- 실제로, 여러분은 답을 짐작할 수 있습니다: 메서드의 특별함은 인스턴스 객체가 함수의 첫 번째 인자로 전달된다는 것입니다. 우리 예에서, 호출 `x.f()`는 정확히 `MyClass.f(x)` 와 동등합니다. 일반적으로, _n_ 개의 인자들의 목록으로 메서드를 호출하는 것은, 첫 번째 인자 앞에 메서드의 인스턴스 객체를 삽입해서 만든 인자 목록으로 상응하는 함수를 호출하는 것과 동등합니다.
+- 일반적으로 메서드는 다음과 같이 작동합니다. 인스턴스의 비데이터 속성이 참조되면 인스턴스의 클래스가 검색됩니다. 이름이 함수 객체인 유효한 클래스 속성을 나타내는 경우, 인스턴스 객체와 함수 객체에 대한 참조가 메서드 객체로 패킹됩니다. 메서드 객체가 인자 목록과 함께 호출되면 인스턴스 객체와 인자 목록에서 새 인자 목록이 구성되고 이 새 인자 목록으로 함수 객체가 호출됩니다.
+
+### 클래스와 인스턴스 변수
+
+- 일반적으로 말해서, 인스턴스 변수는 인스턴스별 데이터를 위한 것이고 클래스 변수는 ==그 클래스의 모든 인스턴스에서 공유되는 어트리뷰트와 메서드==를 위한 것입니다. 하나의 인스턴스에서 클래스 변수 값을 바꾸면 나머지 인스턴스의 클래스 변수 값도 함께 바뀝니다:
+
+```python
+class Dog:
+
+    kind = 'canine'         # class variable shared by all instances
+
+    def __init__(self, name):
+        self.name = name    # instance variable unique to each instance
+
+>>> d = Dog('Fido')
+>>> e = Dog('Buddy')
+>>> d.kind                  # shared by all dogs
+'canine'
+>>> e.kind                  # shared by all dogs
+'canine'
+>>> d.name                  # unique to d
+'Fido'
+>>> e.name                  # unique to e
+'Buddy'
+```
+
+- [이름과 객체에 관한 한마디](https://docs.python.org/ko/3.12/tutorial/classes.html#tut-object) 에서 논의했듯이, 리스트나 딕셔너리와 같은 [가변](https://docs.python.org/ko/3.12/glossary.html#term-mutable) 객체가 참여할 때 공유 데이터는 예상치 못한 효과를 줄 가능성이 있습니다. 예를 들어, 다음 코드에서 _tricks_ 리스트는 클래스 변수로 사용되지 않아야 하는데, 하나의 리스트가 모든 _Dog_ 인스턴스들에 공유되기 때문입니다.
+
+```python
+class Dog:
+
+    tricks = []             # mistaken use of a class variable
+
+    def __init__(self, name):
+        self.name = name
+
+    def add_trick(self, trick):
+        self.tricks.append(trick)
+
+>>> d = Dog('Fido')
+>>> e = Dog('Buddy')
+>>> d.add_trick('roll over')
+>>> e.add_trick('play dead')
+>>> d.tricks                # unexpectedly shared by all dogs
+['roll over', 'play dead']
+```
+
+대신, 클래스의 올바른 설계는 인스턴스 변수를 사용해야 합니다:
+
+```python
+class Dog:
+
+    def __init__(self, name):
+        self.name = name
+        self.tricks = []    # creates a new empty list for each dog
+
+    def add_trick(self, trick):
+        self.tricks.append(trick)
+
+>>> d = Dog('Fido')
+>>> e = Dog('Buddy')
+>>> d.add_trick('roll over')
+>>> e.add_trick('play dead')
+>>> d.tricks
+['roll over']
+>>> e.tricks
+['play dead']
+```
+
 
 ## 모듈 (Module) [[python_module|(자세히 보기)]]
 
@@ -955,164 +1169,16 @@ def fib2(n):   # return Fibonacci series up to n
 >   `import importlib; importlib.reload(modulename)`.
 
 
-## 입출력
+---
+# Python 고급
+> [!summary]
+> > 다음 내용은 Python 프로그램을 확장하고, 오류를 제어하기 위한 방법을 다룹니다.
+> > 실무에서 Python 프로그램을 작성하고, 안정성 있게 작성하려면 알아야 할 내용입니다.
+> - [[#에러와 예외 (Error & Exception) python_error_exception (자세히 보기)|에러와 예외 (Error & Exception)]]
+> - [[#라이브러리 (Library) python_library (자세히 보기)|라이브러리 (Library)]]
+> - [[#파일 입출력 (File Input & Output) python_input_output (자세히 보기)|파일 입출력 (File Input & Output)]]
+> - [[#가상 환경 (Virtual Environment)]]
 
-```python
-variable = input("설명 메시지")
-```
-- `input`은 입력한 값을 문자열 (`str`) 타입으로 저장합니다.
-- `"설명 메시지"`는 설명을 위해 출력할 메시지를 결정합니다.
-- 프로그램의 출력을 표현하는 여러 가지 방법이 있습니다; 사람이 일기에 적합한 형태로 데이터를 인쇄할 수도 있고, 나중에 사용하기 위해 파일에 쓸 수도 있습니다.
-
-### 장식적인 출력 포매팅
-
-- 지금까지 값을 작성하는 두 가지 방법을 살펴봤습니다: 표현식 문과 [`print()`](https://docs.python.org/ko/3.12/library/functions.html#print “print”) 함수. (세 번째 방법은 파일 객체의 [`write()`](https://docs.python.org/ko/3.12/library/io.html#io.TextIOBase.write “io.TextIOBase.write”) 메서드를 사용하는 것인데, 표준 출력 파일은 `sys.stdout`으로 참조할 수 있습니다. 이에 대한 자세한 내용은 라이브러리 참조를 참조하세요.)
-
-### 파일을 읽고 쓰기
-
-- [`open()`](https://docs.python.org/ko/3.12/library/functions.html#open "open")은 [파일 객체](https://docs.python.org/ko/3.12/glossary.html#term-file-object)를 반환하며, 두 개의 위치 인수와 하나의 키워드 인수인 `open(filename, mode, encoding=None)`과 함께 가장 일반적으로 사용됩니다.
-
-```python
->>> f = open('workfile', 'w', encoding="utf-8")
-```
-
-- 첫 번째 인자는 파일 이름을 담은 문자열입니다. 두 번째 인자는 파일이 사용될 방식을 설명하는 몇 개의 문자들을 담은 또 하나의 문자열입니다. _mode_ 는 파일을 읽기만 하면 `'r'`, 쓰기만 하면 `'w'` (같은 이름의 이미 존재하는 파일은 삭제됩니다) 가 되고, `'a'` 는 파일을 덧붙이기 위해 엽니다; 파일에 기록되는 모든 데이터는 자동으로 끝에 붙습니다. `'r+'` 는 파일을 읽고 쓰기 위해 엽니다. _mode_ 인자는 선택적인데, 생략하면 `'r'` 이 가정됩니다.
-- 일반적으로 파일은 _텍스트 모드_, 즉 특정 인코딩으로 인코딩된 파일에서 문자열을 읽고 쓰는 방식으로 열립니다. encoding_을 지정하지 않으면 기본값은 플랫폼에 따라 달라집니다([`open()`](https://docs.python.org/ko/3.12/library/functions.html#open "open") 참조). UTF-8이 사실상의 최신 표준이므로 다른 인코딩을 사용해야 하는 경우가 아니라면 `encoding="utf-8"`을 사용하는 것이 좋습니다. 모드에 `'b'`를 추가하면 파일이 바이너리 모드로 열립니다. 바이너리 모드 데이터는 [`바이트`](https://docs.python.org/ko/3.12/library/stdtypes.html#bytes "바이트") 객체로 읽고 씁니다. 바이너리 모드로 파일을 열 때는 encoding을 지정할 수 없습니다.
-- 텍스트 모드에서, 읽을 때의 기본 동작은 플랫폼 의존적인 줄 종료 (유닉스에서 `\n`, 윈도우에서 `\r\n`) 를 단지 `\n` 로 변경하는 것입니다. 텍스트 모드로 쓸 때, 기본 동작은 `\n` 를 다시 플랫폼 의존적인 줄 종료로 변환하는 것입니다. 이 파일 데이터에 대한 무대 뒤의 수정은 텍스트 파일의 경우는 문제가 안 되지만, `JPEG` 이나 `EXE` 파일과 같은 바이너리 데이터를 망치게 됩니다. 그런 파일을 읽고 쓸 때 바이너리 모드를 사용하도록 주의하세요.
-- 파일 객체를 다룰 때 [`with`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#with) 키워드를 사용하는 것은 좋은 습관입니다. 혜택은 도중 예외가 발생하더라도 스위트가 종료될 때 파일이 올바르게 닫힌다는 것입니다. `with` 를 사용하는 것은 동등한 [`try`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#try)-[`finally`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#finally) 블록을 쓰는 것에 비교해 훨씬 짧기도 합니다:
-
-```python
->>> with open('workfile', encoding="utf-8") as f:
-…     read_data = f.read()
-
->>> # We can check that the file has been automatically closed.
->>> f.closed
-True
-```
-
-- [`with`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#with) 키워드를 사용하지 않으면, `f.close()` 를 호출해서 파일을 닫고 사용된 시스템 자원을 즉시 반납해야 합니다.
-
-> [!warning]
-> - `with` 키워드를 사용하거나 `f.close()`를 호출하지 않고 `f.write()`를 호출하면 프로그램이 성공적으로 종료되더라도 `f.write()`의 인자가 디스크에 완전히 기록되지 않을 **수** 있습니다.
-
-- 파일 객체가 닫힌 후에는, [`with`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#with) 문이나 `f.close()` 를 호출하는 경우 모두, 파일 객체를 사용하려는 시도는 자동으로 실패합니다.
-
-```python
->>> f.close()
->>> f.read()
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-ValueError: I/O operation on closed file.
-```
-
-#### 파일 객체의 매소드
-
-- 이 섹션의 나머지 예들은 `f` 라는 파일 객체가 이미 만들어졌다고 가정합니다.
-- 파일의 내용을 읽으려면, `f.read(size)` 를 호출하는데, 일정량의 데이터를 읽고 문자열 (텍스트 모드 에서) 이나 바이트열 (바이너리 모드에서) 로 돌려줍니다. _size_ 는 선택적인 숫자 인자입니다. _size_ 가 생략되거나 음수면 파일의 내용 전체를 읽어서 돌려줍니다; 파일의 크기가 기계의 메모리보다 두 배 크다면 여러분이 감당할 문제입니다. 그렇지 않으면 최대 _size_ 문자(텍스트 모드에서)나 _size_ 바이트(바이너리 모드에서)를 읽고 돌려줍니다. 파일의 끝에 도달하면, `f.read()` 는 빈 문자열 (`''`) 을 돌려줍니다.
-
-```python
->>> f.read()
-'This is the entire file.\n'
->>> f.read()
-''
-```
-
-- `f.readline()` 은 파일에서 한 줄을 읽습니다; 개행 문자 (`\n`) 는 문자열의 끝에 보존되고, 파일이 개행문자로 끝나지 않는 때에만 파일의 마지막 줄에서만 생략됩니다. 이렇게 반환 값을 모호하지 않게 만듭니다; `f.readline()` 가 빈 문자열을 돌려주면, 파일의 끝에 도달한 것이지만, 빈 줄은 `'\n'`, 즉 하나의 개행문자만을 포함하는 문자열로 표현됩니다.
-
-```python
->>> f.readline()
-'This is the first line of the file.\n'
->>> f.readline()
-'Second line of the file\n'
->>> f.readline()
-''
-```
-
-- 파일에서 줄들을 읽으려면, 파일 객체에 대해 루핑할 수 있습니다. 이것은 메모리 효율적이고, 빠르며 간단한 코드로 이어집니다:
-
-```python
->>> for line in f:
-…     print(line, end='')
-…
-This is the first line of the file.
-Second line of the file
-```
-
-- 파일의 모든 줄을 리스트로 읽어 들이려면 `list(f)` 나 `f.readlines()` 를 쓸 수 있습니다.
-- `f.write(string)` 은 _string_ 의 내용을 파일에 쓰고, 출력된 문자들의 개수를 돌려줍니다.
-
-```python
->>> f.write('This is a test\n')
-15
-```
-
-- 다른 형의 객체들은 쓰기 전에 변환될 필요가 있습니다 – 문자열 (텍스트 모드에서) 이나 바이트열 객체 (바이너리 모드에서) 로 –:
-
-```python
->>> value = ('the answer', 42)
->>> s = str(value)  # convert the tuple to string
->>> f.write(s)
-18
-```
-
-- `f.tell()` 은 파일의 현재 위치를 가리키는 정수를 돌려주는데, 바이너리 모드의 경우 파일의 처음부터의 바이트 수로 표현되고 텍스트 모드의 경우는 불투명한 숫자입니다.
-- 파일 객체의 위치를 바꾸려면, `f.seek(offset, whence)` 를 사용합니다. 위치는 기준점에 _offset_ 을 더해서 계산됩니다; 기준점은 _whence_ 인자로 선택합니다. _whence_ 값이 0이면 파일의 처음부터 측정하고, 1이면 현재 파일 위치를 사용하고, 2 는 파일의 끝을 기준점으로 사용합니다. _whence_ 는 생략될 수 있고, 기본값은 0이라서 파일의 처음을 기준점으로 사용합니다.
-
-```python
->>> f = open('workfile', 'rb+')
->>> f.write(b'0123456789abcdef')
-16
->>> f.seek(5)      # Go to the 6th byte in the file
-5
->>> f.read(1)
-b'5'
->>> f.seek(-3, 2)  # Go to the 3rd byte before the end
-13
->>> f.read(1)
-b'd'
-```
-
-- 텍스트 파일에서는 (모드 문자열에 `b` 가 없이 열린 것들), 파일의 시작에 상대적인 위치 변경만 허락되고 (예외는 `seek(0, 2)` 를 사용해서 파일의 끝으로 위치를 변경하는 경우입니다), 올바른 _offset_ 값은 `f.tell()` 이 돌려준 값과 0뿐입니다. 그 밖의 다른 _offset_ 값은 정의되지 않은 결과를 낳습니다.
-- 파일 객체에는 [`isatty()`](https://docs.python.org/ko/3.12/library/io.html#io.IOBase.isatty "io.IOBase.isatty") 및 [`truncate()`](https://docs.python.org/ko/3.12/library/io.html#io.IOBase.truncate "io.IOBase.truncate") 등 자주 사용되지 않는 몇 가지 추가 메서드가 있으며, 파일 객체에 대한 전체 가이드는 라이브러리 참조를 참조하시기 바랍니다.
-
-#### [`json`](https://docs.python.org/ko/3.12/library/json.html#module-json "json: Encode and decode the JSON format.") 으로 구조적인 데이터를 저장하기
-
-- 문자열은 파일에 쉽게 쓰고 파일에서 읽을 수 있습니다. 숫자는 [`read()`](https://docs.python.org/ko/3.12/library/io.html#io.TextIOBase.read "io.TextIOBase.read") 메서드가 문자열만 반환하므로 `'123'`과 같은 문자열을 받아 숫자 값 123을 반환하는 [`int()`](https://docs.python.org/ko/3.12/library/functions.html#int "int") 같은 함수에 전달해야 하므로 조금 더 많은 노력이 필요합니다. 중첩된 목록이나 사전과 같이 더 복잡한 데이터 유형을 저장하려는 경우 수작업으로 구문 분석하고 직렬화하는 것은 복잡해집니다.
-- 복잡한 데이터 유형을 파일에 저장하기 위해 사용자가 지속적으로 코드를 작성하고 디버깅하는 대신 Python을 사용하면 [JSON(JavaScript Object Notation)](https://json.org/)이라는 널리 사용되는 데이터 교환 형식을 사용할 수 있습니다. 표준 모듈은 [`json`](https://docs.python.org/ko/3.12/library/json.html#module-json "json: JSON 형식을 인코딩하고 디코딩합니다.")는 Python 데이터 계층구조를 가져와 문자열 표현으로 변환할 수 있으며, 이 프로세스를 serializing이라고 합니다. 문자열 표현에서 데이터를 재구성하는 것을 역직렬화라고 합니다. 직렬화와 역직렬화 사이에 객체를 나타내는 문자열은 파일이나 데이터에 저장되어 있거나 네트워크 연결을 통해 멀리 떨어진 컴퓨터로 전송되었을 수 있습니다.
-
-> [!NOTE]
-> - JSON 형식은 데이터 교환을 위해 현대 응용 프로그램들이 자주 사용합니다. 많은 프로그래머가 이미 이것에 익숙하므로, 연동성을 위한 좋은 선택이 됩니다.
-
-- 객체 `x` 가 있을 때, 간단한 한 줄의 코드로 그것의 JSON 문자열 표현을 볼 수 있습니다:
-
-```python
->>> import json
->>> x = [1, 'simple', 'list']
->>> json.dumps(x)
-'[1, "simple", "list"]'
-```
-
-- [`dump()`](https://docs.python.org/ko/3.12/library/json.html#json.dump "json.dump")라는 [`dumps()`](https://docs.python.org/ko/3.12/library/json.html#json.dumps "json.dumps") 함수의 변종은 객체를 [텍스트 파일](https://docs.python.org/ko/3.12/glossary.html#term-text-file) 로 직렬화합니다. 그래서 `f` 가 쓰기를 위해 열린 [텍스트 파일](https://docs.python.org/ko/3.12/glossary.html#term-text-file) 이면, 이렇게 할 수 있습니다:
-
-```python
-json.dump(x, f)
-```
-
-- `f`가 읽기 위해 열린 [바이너리 파일](https://docs.python.org/ko/3.12/glossary.html#term-binary-file) 또는 [텍스트 파일](https://docs.python.org/ko/3.12/glossary.html#term-text-file) 객체인 경우, 객체를 다시 디코딩하려면 다음과 같이 합니다:
-
-```python
-x = json.load(f)
-```
-
-
-> [!NOTE]
-> - JSON 파일은 UTF-8로 인코딩해야 합니다. JSON 파일을 [텍스트 파일](https://docs.python.org/ko/3.12/glossary.html#term-text-file)로 열 때는 읽기와 쓰기 모두 `encoding="utf-8"`을 사용하세요.
-
-- 이 간단한 직렬화 테크닉이 리스트와 딕셔너리를 다룰 수 있지만, 임의의 클래스 인스턴스를 JSON 으로 직렬화하기 위해서는 약간의 수고가 더 필요합니다. [`json`](https://docs.python.org/ko/3.12/library/json.html#module-json "json: Encode and decode the JSON format.") 모듈의 레퍼런스는 이 방법에 대한 설명을 담고 있습니다.
-
-
-#### [`pickle`](https://docs.python.org/ko/3.12/library/pickle.html#module-pickle "pickle: Convert Python objects to streams of bytes and back.") - 피클 모듈
-- [JSON](https://docs.python.org/ko/3.12/tutorial/inputoutput.html#tut-json) 에 반해, _pickle_ 은 임의의 복잡한 파이썬 객체들을 직렬화할 수 있는 프로토콜입니다. 파이썬에 국한되고 다른 언어로 작성된 응용 프로그램들과 통신하는데 사용될 수 없습니다. 기본적으로 안전하지 않기도 합니다: 믿을 수 없는 소스에서 온 데이터를 역 직렬화할 때, 숙련된 공격자에 의해 데이터가 조작되었다면 임의의 코드가 실행될 수 있습니다.
 
 ## 에러와 예외 (Error & Exception) [[python_error_exception|(자세히 보기)]]
 #### 예외
@@ -1478,5 +1544,266 @@ Add some more information
     +------------------------------------
 ```
 
+## 라이브러리 (Library) [[python_library|(자세히 보기)]]
+- 파이썬에는 `math` 등 기본으로 `import`하여 사용할 수 있도록 구현한 표준 라이브러리가 있습니다. 필요한 기능이 있을 경우 이를 사용하여 코드를 작성할 수 있습니다.
+- 표준 라이브러리 외에도 추가적인 기능이 필요할 경우 다른 사람들이 구현한 라이브러리를 설치 [[python_module|("모듈"의 "패키지" 참조)]]하여 사용할 수 있습니다.
+
+## 파일 입출력 (File Input & Output) [[python_input_output|(자세히 보기)]]
+
+- [`open()`](https://docs.python.org/ko/3.12/library/functions.html#open "open")은 [파일 객체](https://docs.python.org/ko/3.12/glossary.html#term-file-object)를 반환하며, 두 개의 위치 인수와 하나의 키워드 인수인 `open(filename, mode, encoding=None)`과 함께 가장 일반적으로 사용됩니다.
+
+```python
+>>> f = open('workfile', 'w', encoding="utf-8")
+```
+
+- 첫 번째 인자는 파일 이름을 담은 문자열입니다. 두 번째 인자는 파일이 사용될 방식을 설명하는 몇 개의 문자들을 담은 또 하나의 문자열입니다. _mode_ 는 파일을 읽기만 하면 `'r'`, 쓰기만 하면 `'w'` (같은 이름의 이미 존재하는 파일은 삭제됩니다) 가 되고, `'a'` 는 파일을 덧붙이기 위해 엽니다; 파일에 기록되는 모든 데이터는 자동으로 끝에 붙습니다. `'r+'` 는 파일을 읽고 쓰기 위해 엽니다. _mode_ 인자는 선택적인데, 생략하면 `'r'` 이 가정됩니다.
+- 일반적으로 파일은 _텍스트 모드_, 즉 특정 인코딩으로 인코딩된 파일에서 문자열을 읽고 쓰는 방식으로 열립니다. encoding_을 지정하지 않으면 기본값은 플랫폼에 따라 달라집니다([`open()`](https://docs.python.org/ko/3.12/library/functions.html#open "open") 참조). UTF-8이 사실상의 최신 표준이므로 다른 인코딩을 사용해야 하는 경우가 아니라면 `encoding="utf-8"`을 사용하는 것이 좋습니다. 모드에 `'b'`를 추가하면 파일이 바이너리 모드로 열립니다. 바이너리 모드 데이터는 [`바이트`](https://docs.python.org/ko/3.12/library/stdtypes.html#bytes "바이트") 객체로 읽고 씁니다. 바이너리 모드로 파일을 열 때는 encoding을 지정할 수 없습니다.
+- 텍스트 모드에서, 읽을 때의 기본 동작은 플랫폼 의존적인 줄 종료 (유닉스에서 `\n`, 윈도우에서 `\r\n`) 를 단지 `\n` 로 변경하는 것입니다. 텍스트 모드로 쓸 때, 기본 동작은 `\n` 를 다시 플랫폼 의존적인 줄 종료로 변환하는 것입니다. 이 파일 데이터에 대한 무대 뒤의 수정은 텍스트 파일의 경우는 문제가 안 되지만, `JPEG` 이나 `EXE` 파일과 같은 바이너리 데이터를 망치게 됩니다. 그런 파일을 읽고 쓸 때 바이너리 모드를 사용하도록 주의하세요.
+- 파일 객체를 다룰 때 [`with`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#with) 키워드를 사용하는 것은 좋은 습관입니다. 혜택은 도중 예외가 발생하더라도 스위트가 종료될 때 파일이 올바르게 닫힌다는 것입니다. `with` 를 사용하는 것은 동등한 [`try`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#try)-[`finally`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#finally) 블록을 쓰는 것에 비교해 훨씬 짧기도 합니다:
+
+```python
+>>> with open('workfile', encoding="utf-8") as f:
+…     read_data = f.read()
+
+>>> # We can check that the file has been automatically closed.
+>>> f.closed
+True
+```
+
+- [`with`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#with) 키워드를 사용하지 않으면, `f.close()` 를 호출해서 파일을 닫고 사용된 시스템 자원을 즉시 반납해야 합니다.
+
+> [!warning]
+> - `with` 키워드를 사용하거나 `f.close()`를 호출하지 않고 `f.write()`를 호출하면 프로그램이 성공적으로 종료되더라도 `f.write()`의 인자가 디스크에 완전히 기록되지 않을 **수** 있습니다.
+
+- 파일 객체가 닫힌 후에는, [`with`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#with) 문이나 `f.close()` 를 호출하는 경우 모두, 파일 객체를 사용하려는 시도는 자동으로 실패합니다.
+
+```python
+>>> f.close()
+>>> f.read()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: I/O operation on closed file.
+```
+
+### 파일 객체의 매소드
+
+- 이 섹션의 나머지 예들은 `f` 라는 파일 객체가 이미 만들어졌다고 가정합니다.
+- 파일의 내용을 읽으려면, `f.read(size)` 를 호출하는데, 일정량의 데이터를 읽고 문자열 (텍스트 모드 에서) 이나 바이트열 (바이너리 모드에서) 로 돌려줍니다. _size_ 는 선택적인 숫자 인자입니다. _size_ 가 생략되거나 음수면 파일의 내용 전체를 읽어서 돌려줍니다; 파일의 크기가 기계의 메모리보다 두 배 크다면 여러분이 감당할 문제입니다. 그렇지 않으면 최대 _size_ 문자(텍스트 모드에서)나 _size_ 바이트(바이너리 모드에서)를 읽고 돌려줍니다. 파일의 끝에 도달하면, `f.read()` 는 빈 문자열 (`''`) 을 돌려줍니다.
+
+```python
+>>> f.read()
+'This is the entire file.\n'
+>>> f.read()
+''
+```
+
+- `f.readline()` 은 파일에서 한 줄을 읽습니다; 개행 문자 (`\n`) 는 문자열의 끝에 보존되고, 파일이 개행문자로 끝나지 않는 때에만 파일의 마지막 줄에서만 생략됩니다. 이렇게 반환 값을 모호하지 않게 만듭니다; `f.readline()` 가 빈 문자열을 돌려주면, 파일의 끝에 도달한 것이지만, 빈 줄은 `'\n'`, 즉 하나의 개행문자만을 포함하는 문자열로 표현됩니다.
+
+```python
+>>> f.readline()
+'This is the first line of the file.\n'
+>>> f.readline()
+'Second line of the file\n'
+>>> f.readline()
+''
+```
+
+- 파일에서 줄들을 읽으려면, 파일 객체에 대해 루핑할 수 있습니다. 이것은 메모리 효율적이고, 빠르며 간단한 코드로 이어집니다:
+
+```python
+>>> for line in f:
+…     print(line, end='')
+…
+This is the first line of the file.
+Second line of the file
+```
+
+- 파일의 모든 줄을 리스트로 읽어 들이려면 `list(f)` 나 `f.readlines()` 를 쓸 수 있습니다.
+- `f.write(string)` 은 _string_ 의 내용을 파일에 쓰고, 출력된 문자들의 개수를 돌려줍니다.
+
+```python
+>>> f.write('This is a test\n')
+15
+```
+
+- 다른 형의 객체들은 쓰기 전에 변환될 필요가 있습니다 – 문자열 (텍스트 모드에서) 이나 바이트열 객체 (바이너리 모드에서) 로 –:
+
+```python
+>>> value = ('the answer', 42)
+>>> s = str(value)  # convert the tuple to string
+>>> f.write(s)
+18
+```
+
+- `f.tell()` 은 파일의 현재 위치를 가리키는 정수를 돌려주는데, 바이너리 모드의 경우 파일의 처음부터의 바이트 수로 표현되고 텍스트 모드의 경우는 불투명한 숫자입니다.
+- 파일 객체의 위치를 바꾸려면, `f.seek(offset, whence)` 를 사용합니다. 위치는 기준점에 _offset_ 을 더해서 계산됩니다; 기준점은 _whence_ 인자로 선택합니다. _whence_ 값이 0이면 파일의 처음부터 측정하고, 1이면 현재 파일 위치를 사용하고, 2 는 파일의 끝을 기준점으로 사용합니다. _whence_ 는 생략될 수 있고, 기본값은 0이라서 파일의 처음을 기준점으로 사용합니다.
+
+```python
+>>> f = open('workfile', 'rb+')
+>>> f.write(b'0123456789abcdef')
+16
+>>> f.seek(5)      # Go to the 6th byte in the file
+5
+>>> f.read(1)
+b'5'
+>>> f.seek(-3, 2)  # Go to the 3rd byte before the end
+13
+>>> f.read(1)
+b'd'
+```
+
+- 텍스트 파일에서는 (모드 문자열에 `b` 가 없이 열린 것들), 파일의 시작에 상대적인 위치 변경만 허락되고 (예외는 `seek(0, 2)` 를 사용해서 파일의 끝으로 위치를 변경하는 경우입니다), 올바른 _offset_ 값은 `f.tell()` 이 돌려준 값과 0뿐입니다. 그 밖의 다른 _offset_ 값은 정의되지 않은 결과를 낳습니다.
+- 파일 객체에는 [`isatty()`](https://docs.python.org/ko/3.12/library/io.html#io.IOBase.isatty "io.IOBase.isatty") 및 [`truncate()`](https://docs.python.org/ko/3.12/library/io.html#io.IOBase.truncate "io.IOBase.truncate") 등 자주 사용되지 않는 몇 가지 추가 메서드가 있으며, 파일 객체에 대한 전체 가이드는 라이브러리 참조를 참조하시기 바랍니다.
+
+### [`json`](https://docs.python.org/ko/3.12/library/json.html#module-json "json: Encode and decode the JSON format.") 으로 구조적인 데이터를 저장하기
+
+- 문자열은 파일에 쉽게 쓰고 파일에서 읽을 수 있습니다. 숫자는 [`read()`](https://docs.python.org/ko/3.12/library/io.html#io.TextIOBase.read "io.TextIOBase.read") 메서드가 문자열만 반환하므로 `'123'`과 같은 문자열을 받아 숫자 값 123을 반환하는 [`int()`](https://docs.python.org/ko/3.12/library/functions.html#int "int") 같은 함수에 전달해야 하므로 조금 더 많은 노력이 필요합니다. 중첩된 목록이나 사전과 같이 더 복잡한 데이터 유형을 저장하려는 경우 수작업으로 구문 분석하고 직렬화하는 것은 복잡해집니다.
+- 복잡한 데이터 유형을 파일에 저장하기 위해 사용자가 지속적으로 코드를 작성하고 디버깅하는 대신 Python을 사용하면 [JSON(JavaScript Object Notation)](https://json.org/)이라는 널리 사용되는 데이터 교환 형식을 사용할 수 있습니다. 표준 모듈은 [`json`](https://docs.python.org/ko/3.12/library/json.html#module-json "json: JSON 형식을 인코딩하고 디코딩합니다.")는 Python 데이터 계층구조를 가져와 문자열 표현으로 변환할 수 있으며, 이 프로세스를 serializing이라고 합니다. 문자열 표현에서 데이터를 재구성하는 것을 역직렬화라고 합니다. 직렬화와 역직렬화 사이에 객체를 나타내는 문자열은 파일이나 데이터에 저장되어 있거나 네트워크 연결을 통해 멀리 떨어진 컴퓨터로 전송되었을 수 있습니다.
+
+> [!NOTE]
+> - JSON 형식은 데이터 교환을 위해 현대 응용 프로그램들이 자주 사용합니다. 많은 프로그래머가 이미 이것에 익숙하므로, 연동성을 위한 좋은 선택이 됩니다.
+
+- 객체 `x` 가 있을 때, 간단한 한 줄의 코드로 그것의 JSON 문자열 표현을 볼 수 있습니다:
+
+```python
+>>> import json
+>>> x = [1, 'simple', 'list']
+>>> json.dumps(x)
+'[1, "simple", "list"]'
+```
+
+- [`dump()`](https://docs.python.org/ko/3.12/library/json.html#json.dump "json.dump")라는 [`dumps()`](https://docs.python.org/ko/3.12/library/json.html#json.dumps "json.dumps") 함수의 변종은 객체를 [텍스트 파일](https://docs.python.org/ko/3.12/glossary.html#term-text-file) 로 직렬화합니다. 그래서 `f` 가 쓰기를 위해 열린 [텍스트 파일](https://docs.python.org/ko/3.12/glossary.html#term-text-file) 이면, 이렇게 할 수 있습니다:
+
+```python
+json.dump(x, f)
+```
+
+- `f`가 읽기 위해 열린 [바이너리 파일](https://docs.python.org/ko/3.12/glossary.html#term-binary-file) 또는 [텍스트 파일](https://docs.python.org/ko/3.12/glossary.html#term-text-file) 객체인 경우, 객체를 다시 디코딩하려면 다음과 같이 합니다:
+
+```python
+x = json.load(f)
+```
+
+
+> [!NOTE]
+> - JSON 파일은 UTF-8로 인코딩해야 합니다. JSON 파일을 [텍스트 파일](https://docs.python.org/ko/3.12/glossary.html#term-text-file)로 열 때는 읽기와 쓰기 모두 `encoding="utf-8"`을 사용하세요.
+
+- 이 간단한 직렬화 테크닉이 리스트와 딕셔너리를 다룰 수 있지만, 임의의 클래스 인스턴스를 JSON 으로 직렬화하기 위해서는 약간의 수고가 더 필요합니다. [`json`](https://docs.python.org/ko/3.12/library/json.html#module-json "json: Encode and decode the JSON format.") 모듈의 레퍼런스는 이 방법에 대한 설명을 담고 있습니다.
+
+
+### [`pickle`](https://docs.python.org/ko/3.12/library/pickle.html#module-pickle "pickle: Convert Python objects to streams of bytes and back.") - 피클 모듈
+- [JSON](https://docs.python.org/ko/3.12/tutorial/inputoutput.html#tut-json) 에 반해, _pickle_ 은 임의의 복잡한 파이썬 객체들을 직렬화할 수 있는 프로토콜입니다. 파이썬에 국한되고 다른 언어로 작성된 응용 프로그램들과 통신하는데 사용될 수 없습니다. 기본적으로 안전하지 않기도 합니다: 믿을 수 없는 소스에서 온 데이터를 역 직렬화할 때, 숙련된 공격자에 의해 데이터가 조작되었다면 임의의 코드가 실행될 수 있습니다.
+
+
+## 가상 환경 (Virtual Environment)
+
+- 파이썬 응용 프로그램은 종종 표준 라이브러리의 일부로 제공되지 않는 패키지와 모듈을 사용합니다. 응용 프로그램에 특정 버전의 라이브러리가 필요할 수 있는데, 응용 프로그램에 특정 버그가 수정된 버전이 필요하거나, 라이브러리 인터페이스의 구식 버전을 사용하여 응용 프로그램을 작성할 수도 있기 때문입니다.
+- 즉, 하나의 파이썬 설치가 모든 응용 프로그램의 요구 사항을 충족시키는 것이 불가능할 수도 있습니다. 응용 프로그램 A에 특정 모듈의 버전 1.0이 필요하지만, 응용 프로그램 B에 버전 2.0이 필요한 경우, 요구 사항이 충돌하고, 버전 1.0 또는 2.0을 설치하면 어느 한 응용 프로그램은 실행할 수 없게 됩니다.
+- 이 문제에 대한 해결책은 [가상 환경](https://docs.python.org/ko/3.12/glossary.html#term-virtual-environment) 을 만드는 것입니다. 이 가상 환경은 특정 버전 파이썬 설치와 여러 추가 패키지를 포함하는 완비된 디렉터리 트리입니다.
+- 서로 다른 응용 프로그램은 서로 다른 가상 환경을 사용할 수 있습니다. 앞서 본 상충하는 요구 사항의 예를 해결하기 위해, 응용 프로그램 A에는 버전 1.0이 설치된 자체 가상 환경이 있고, 응용 프로그램 B에는 버전 2.0이 있는 다른 가상 환경이 있을 수 있습니다. 응용 프로그램 B에서 라이브러리를 버전 3.0으로 업그레이드해야 하는 경우, 응용 프로그램 A의 환경에 영향을 미치지 않습니다.
+
+### 가상 환경 만들기
+
+- 가상 환경을 생성하고 관리하는 데 사용되는 모듈은 [`venv`](https://docs.python.org/ko/3.12/library/venv.html#module-venv "venv: 가상 환경 생성."). [`venv`](https://docs.python.org/ko/3.12/library/venv.html#module-venv "venv: 가상 환경 생성.")는 명령이 실행된 파이썬 버전을 설치합니다 ([`--version`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-version) 옵션에서 보고한 대로). 예를 들어 `python3.12`로 명령을 실행하면 버전 3.12가 설치됩니다.
+- 가상 환경을 만들려면, 원하는 디렉터리를 결정하고, [`venv`](https://docs.python.org/ko/3.12/library/venv.html#module-venv "venv: Creation of virtual environments.") 모듈을 스크립트로 실행하는데 디렉터리 경로를 명령행 인자로 전달합니다:
+
+```shell
+python -m venv tutorial-env
+```
+
+- 이렇게 하면 `tutorial-env` 디렉터리가 없는 경우 그 안에 파이썬 인터프리터 사본과 다양한 지원 파일이 포함된 디렉터리가 만들어집니다.
+- 가상 환경의 일반적인 디렉터리 위치는 `.venv`입니다. 이 이름은 디렉터리가 보통 셸에서 숨겨져 있도록 하므로, 디렉터리가 존재하는 이유를 설명하는 이름을 제공하면서도 방해받지 않습니다. 또한 일부 툴링(tooling)이 지원하는 `.env` 환경 변수 정의 파일과의 충돌을 방지합니다.
+- 가상 환경을 만들었으면, 가상 환경을 활성화할 수 있습니다.
+  윈도우에서 이렇게 실행합니다:
+
+```shell
+tutorial-env\Scripts\activate
+```
+
+Unix 또는 MacOS에서 이렇게 실행합니다:
+
+```shell
+source tutorial-env/bin/activate
+```
+
+> (이 스크립트는 bash 셸을 위해 작성된 것으로, **csh** 또는 **fish** 셸을 사용하는 경우에는, 대신 `activate.csh` 와 `activate.fish` 스크립트를 사용해야 합니다.)
+
+- 가상 환경을 활성화하면, 셸의 프롬프트가 변경되어 사용 중인 가상 환경을 보여주고, 환경을 수정하여 `python` 을 실행하면 특정 버전의 파이썬이 실행되도록 합니다. 예를 들어:
+
+```shell
+$ source ~/envs/tutorial-env/bin/activate
+(tutorial-env) $ python
+Python 3.5.1 (default, May  6 2016, 10:59:36)
+  ...
+>>> import sys
+>>> sys.path
+['', '/usr/local/lib/python35.zip', ...,
+'~/envs/tutorial-env/lib/python3.5/site-packages']
+>>>
+```
+
+- 가상 환경을 비활성화하려면 터미널에 다음과 같이 입력합니다:
+
+```shell
+deactivate
+```
+
+
+# Python 심화
+> [!summary]
+> > 다음 내용은 Python 프로그램 작성 중 필요한 경우 참고할만한 내용입니다.
+> - [[#파이썬 스크립트 만들기]]
+> - [[#대화형 시작 파일]]
+> - [[#커스터마이제이션 모듈]]
+
+## 파이썬 개발 모드
+[파이썬 개발 모드 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/devmode.html#devmode)
+- 환경 변수 문서 참고
+
+## 파이썬 스크립트 만들기
+- BSD 스타일의 유닉스 시스템에서 파이썬 스크립트는 셸 스크립트처럼 직접 실행할 수 있게 만들 수 있습니다. 다음과 같은 줄
+
+```python
+#!/usr/bin/env python3
+```
+
+- (인터프리터가 사용자의 `PATH` 에 있다고 가정할 때)을 스크립트의 시작 부분에 넣고 파일에 실행 가능 모드를 줍니다. `#!` 는 반드시 파일의 처음 두 문자여야 합니다. 일부 플랫폼에서는 이 첫 번째 줄이 유닉스 스타일의 줄 종료 (`'\n'`)로 끝나야 하며, 윈도우 줄 종료(`'\r\n'`)는 허락되지 않습니다. 파이썬에서 해시, 또는 파운드, 문자 `'#'` 는 주석을 시작하는 데 사용됩니다.
+- 스크립트는 **chmod** 명령을 사용하여 실행 가능한 모드, 또는 권한, 을 부여받을 수 있습니다.
+
+```sh
+$ chmod +x myscript.py
+```
+
+- 윈도우 시스템에서는 “실행 가능 모드”라는 개념이 없습니다. 파이썬 설치 프로그램은 `.py` 파일을 `python.exe`와 자동으로 연결하여, 파이썬 파일을 이중 클릭하면 스크립트로 실행합니다. 확장자는 `.pyw` 일 수도 있습니다. 이 경우, 일반적으로 나타나는 콘솔 창은 표시되지 않습니다.
+
+## 대화형 시작 파일
+
+- 파이썬을 대화형으로 사용할 때, 종종 인터프리터가 시작될 때마다 실행되는 표준 명령들이 있으면 편리합니다. [`PYTHONSTARTUP`](https://docs.python.org/ko/3.12/using/cmdline.html#envvar-PYTHONSTARTUP) 환경 변수를 시작 명령이 들어있는 파일 이름으로 설정하면 됩니다. 이것은 유닉스 셸의 `.profile` 기능과 유사합니다.
+- 이 파일은 대화형 세션에서만 읽히며, 파이썬이 스크립트에서 명령을 읽을 때나, `/dev/tty` 가 명령의 명시적 소스인 경우(대화형 세션처럼 동작한다)에는 읽지 않습니다. 대화형 명령이 실행되는 같은 이름 공간에서 실행되므로, 이 파일에서 정의하거나 임포트하는 객체들을 대화형 세션에서 정규화하지 않은 이름으로 사용할 수 있습니다. 이 파일에서 `sys.ps1` 및 `sys.ps2` 프롬프트를 변경할 수도 있습니다.
+- 현재 디렉터리에서 추가 시작 파일을 읽으려면, 전역 시작 파일에서 `if os.path.isfile('.pythonrc.py'): exec(open('.pythonrc.py').read())` 와 같은 코드를 사용해서 프로그램할 수 있습니다. 스크립트에서 시작 파일을 사용하려면 스크립트에서 명시적으로 수행해야 합니다:
+
+```python
+import os
+filename = os.environ.get('PYTHONSTARTUP')
+if filename and os.path.isfile(filename):
+    with open(filename) as fobj:
+        startup_file = fobj.read()
+    exec(startup_file)
+```
+
+## 커스터마이제이션 모듈
+
+- 파이썬은 사용자 정의할 수 있는 두 가지 훅, 즉 사이트 사용자 정의와 사용자 사용자 정의를 제공합니다. 작동 방식을 확인하려면 먼저 사용자 사이트 패키지 디렉터리의 위치를 찾아야 합니다. Python을 시작하고 이 코드를 실행합니다:
+
+```python
+>>> import site
+>>> site.getusersitepackages()
+'/home/user/.local/lib/python3.x/site-packages'
+```
+
+- 이제 그 디렉터리에 `usercustomize.py` 라는 이름의 파일을 만들고 원하는 것들을 넣을 수 있습니다. 자동 임포트를 비활성화하는 [`-s`](https://docs.python.org/ko/3.12/using/cmdline.html#cmdoption-s) 옵션으로 시작하지 않는 한, 이 파일은 모든 파이썬 실행에 영향을 줍니다.
+- 사이트 사용자 정의는 같은 방식으로 작동하지만 일반적으로 컴퓨터 관리자가 글로벌 사이트 패키지 디렉터리에서 생성하며 사용자 정의 전에 가져옵니다. 사이트별 구성을 담당하는 모듈인 [`site`](https://docs.python.org/ko/3.12/library/site.html#module-site "사이트: 사이트별 구성을 담당하는 모듈.") 모듈의 문서를 참조하세요.
+
 ---
-## 참조
+# 참조
+[3.12.5 Documentation (python.org)](https://docs.python.org/ko/3/)

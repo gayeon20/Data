@@ -536,5 +536,68 @@ g
 ['f', 'l', 'o', 'g']
 ```
 
+## 데코레이터 (Decorator)
+- Python의 `@property` 데코레이터는 클래스의 메서드를 인스턴스 변수처럼 사용할 수 있게 해주는 기능입니다. 이를 통해 객체의 상태를 직접 수정하지 않고도 메서드를 통해 안전하게 데이터에 접근할 수 있습니다. 이 기능은 캡슐화라고 불리며, 객체 지향 프로그래밍에서 중요한 개념 중 하나입니다.
+
+### 기본 사용법
+
+- `@property` 데코레이터를 사용하면, getter 메서드를 정의할 수 있습니다. 예를 들어, 다음과 같은 `Person` 클래스를 생각해볼 수 있습니다:
+
+```python
+class Person:
+    def __init__(self, first_name, last_name):
+        self._first_name = first_name
+        self._last_name = last_name
+
+    @property
+    def full_name(self):
+        return f"{self._first_name} {self._last_name}"
+```
+
+- 이제 `full_name` 속성에 접근할 때마다 `full_name` 메서드가 호출됩니다:
+
+```python
+person = Person("John", "Doe")
+print(person.full_name)  # 출력: John Doe
+```
+
+### Setter와 Deleter
+
+- `@property` 데코레이터는 getter뿐만 아니라 setter와 deleter도 지원합니다. 다음은 setter와 deleter를 추가한 예제입니다:
+
+```python
+class Person:
+    def __init__(self, first_name, last_name):
+        self._first_name = first_name
+        self._last_name = last_name
+
+    @property
+    def full_name(self):
+        return f"{self._first_name} {self._last_name}"
+
+    @full_name.setter
+    def full_name(self, name):
+        first_name, last_name = name.split()
+        self._first_name = first_name
+        self._last_name = last_name
+
+    @full_name.deleter
+    def full_name(self):
+        self._first_name = None
+        self._last_name = None
+```
+
+이제 `full_name` 속성을 설정하거나 삭제할 수 있습니다:
+
+```python
+person = Person("John", "Doe")
+person.full_name = "Jane Smith"
+print(person.full_name)  # 출력: Jane Smith
+del person.full_name
+print(person.full_name)  # 출력: None None
+```
+
+- 이렇게 `@property` 데코레이터를 사용하면, 객체의 속성에 접근할 때 추가적인 로직을 실행할 수 있어 매우 유용합니다.
+
 
 ---
