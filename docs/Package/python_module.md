@@ -701,6 +701,8 @@ Successfully installed novas-3.1.1.3 numpy-1.9.2 requests-2.7.0
 
 - `pip`에는 더 많은 옵션이 있습니다. 파이썬 모듈 설치하기](https://docs.python.org/ko/3.12/installing/index.html#installing-index) 가이드에서 `pip`에 대한 전체 문서를 참조하세요. 패키지를 작성하고 파이썬 패키지 색인에서 사용할 수 있게 하려면 [파이썬 패키징 사용자 가이드](https://packaging.python.org/en/latest/tutorials/packaging-projects/)를 참조하세요.
 
+[5. 임포트 시스템 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/import.html)
+
 
 ---
 

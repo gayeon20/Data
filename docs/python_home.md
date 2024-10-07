@@ -20,16 +20,22 @@ link: https://docs.python.org/ko/3/
 
 **하위 항목**
 - [[python_control|파이썬 제어문 (Python Control)]]
-- [[python_function|파이썬 함수 (Python Function)]]
+- [[python_environment|파이썬 환경 (Python Environment)]]
+- [[python_exception_handling|파이썬 예외 처리 (Python Exception Handling)]]
+- [[python_expression|파이썬 표현식 (Python Expression)]]
+- [[python_extension|파이썬 확장 (Python Extension)]]
 - [[python_input_output|파이썬 입출력 (Python Input & Output)]]
+- [[python_language_structure|파이썬 언어 구조 (Python Language Structure)]]
 - [[python_module|파이썬 모듈 (Python Module)]]
-- [[python_variable|파이썬 변수 (Python Variable)]]
----
-- [ ] [3. 데이터 모델 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/datamodel.html)
-- [ ] [파이썬 표준 라이브러리 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/index.html)
-- [ ] [개발 도구 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/development.html)
-- [ ] [파이썬/C API 레퍼런스 설명서 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/c-api/index.html)
+- [[python_object||파이썬 객체 (Python Object)]]
 
+---
+> [[#코딩 스타일]]
+
+- [ ] [[python_library|라이브러리]]
+- [ ] 표현식
+- [ ] 언어 구조
+- [ ] 
 
 
 # Python 언어
@@ -227,7 +233,7 @@ print(b) # 결과: True
 | `x and y` | x 와 y 모두 `True` 인가?                              |
 | `not x`   | x 가 `True` 라면 `False`, `False` 라면 `True` 를 반환한다. |
 
-### 문자열 (String) [[python_string|(자세히 보기)]]
+### 문자열 (String) [[Software/Code/Language/Python/Object/Variable/python_string|(자세히 보기)]]
 - 파이썬의 텍스트 데이터는 [`str`](https://docs.python.org/ko/3.12/library/stdtypes.html#str "str"), 또는 _문자열 (strings)_, 객체를 사용하여 처리됩니다. 문자열은 유니코드 코드 포인트의 불변 [시퀀스](https://docs.python.org/ko/3.12/library/stdtypes.html#typesseq) 입니다. 
 
 ```python
@@ -255,7 +261,7 @@ print(string)
 - 문자열은 [`str`](https://docs.python.org/ko/3.12/library/stdtypes.html#str "str") 생성자를 사용하여 다른 객체로부터 만들어질 수도 있습니다.
 - 별도의 `char` 형이 없으므로 문자열을 인덱싱하면 길이가 1인 문자열이 생성됩니다. 
 
-### 리스트 (List) [[python_list|(자세히 보기)]]
+### 리스트 (List) [[Software/Code/Language/Python/Object/Variable/python_list|(자세히 보기)]]
 ```python
 list_name = ["variable1", "variable2", 3, 4]
 list_name.remove(3)
@@ -503,7 +509,7 @@ False
 {'r', 'd', 'b', 'm', 'z', 'l'}
 ```
 
-- [[python_list|리스트 컴프리헨션]] 과 유사하게, 집합 컴프리헨션도 지원됩니다:
+- [[Software/Code/Language/Python/Object/Variable/python_list|리스트 컴프리헨션]] 과 유사하게, 집합 컴프리헨션도 지원됩니다:
 
 ```python
 >>> a = {x for x in 'abracadabra' if x not in 'abc'}
@@ -847,7 +853,7 @@ for value in range(5):
 > > 올바르게 작성하기 위해 알아야 할 내용입니다. 
 > - [[#코딩 스타일]]
 > - [[#함수 python_function (자세히 보기)|함수 (Functions)]]
-> - [[python_class|클래스 (Class)]]
+> - [[Software/Code/Language/Python/Object/python_class|클래스 (Class)]]
 > - [[#모듈 (Module) python_module (자세히 보기)|모듈 (Module)]]
 
 
@@ -860,7 +866,7 @@ for value in range(5):
   - ==79자를 넘지 않도록 줄 넘김== 하세요. 이것은 작은 화면을 가진 사용자를 돕고 큰 화면에서는 여러 코드 파일들을 나란히 볼 수 있게 합니다.
   - ==함수, 클래스, 함수 내의 큰 코드 블록 사이에 빈 줄==을 넣어 분리하세요.
   - 가능하다면, ==주석은 별도의 줄==로 넣으세요.
-  - ==[[python_function|docstring]]==을 사용하세요.
+  - ==[[Software/Code/Language/Python/Object/python_function|docstring]]==을 사용하세요.
   - 연산자들 주변과 콤마 뒤에 스페이스를 넣고, 괄호 바로 안쪽에는 스페이스를 넣지 마세요: `a = f(1, 2) + g(3, 4)`.
   - 클래스와 함수들에 일관성 있는 이름을 붙이세요; 관례는 클래스의 경우 `UpperCamelCase`, 함수와 메서드의 경우 `lowercase_with_underscores`입니다. 첫 번째 메서드 인자의 이름으로는 항상 `self`를 사용하세요 (클래스와 메서드에 대한 자세한 내용은 [클래스와의 첫 만남](https://docs.python.org/ko/3.12/tutorial/classes.html#tut-firstclasses) 을 보세요).
   - 여러분의 코드를 국제적인 환경에서 사용하려고 한다면 특별한 인코딩을 사용하지 마세요. 어떤 경우에도 파이썬의 기본, UTF-8, 또는 단순 ASCII조차, 이 최선입니다.
@@ -868,7 +874,7 @@ for value in range(5):
 
 
 
-## 함수 (Functions) [[python_function|(자세히 보기)]]
+## 함수 (Functions) [[Software/Code/Language/Python/Object/python_function|(자세히 보기)]]
 
 - 키워드 [`def`](https://docs.python.org/ko/3.12/reference/compound_stmts.html#def)는 함수 정의를 시작합니다. 함수 이름과 괄호로 싸인 형식 매개변수들의 목록이 뒤따릅니다. 함수의 바디를 형성하는 문장들이 다음 줄에서 시작되고, 반드시 들여쓰기 되어야 합니다.
 - 피보나치 수열을 임의의 한도까지 출력하는 함수를 만들 수 있습니다:

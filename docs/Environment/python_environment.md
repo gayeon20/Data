@@ -14,6 +14,10 @@ link:
 **최초 작성일**: `:::this.file.cday`
 **최종 수정일**: `:::this.file.mtime`
 
+**하위 항목**
+- [[jupyter_home|주피터 (Jupyter)]]
+
+
 ---
 
 ## 가상 환경 (Virtual Environment)

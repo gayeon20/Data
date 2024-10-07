@@ -34,7 +34,28 @@ variable = input("설명 메시지")
 - `"설명 메시지"`는 설명을 위해 출력할 메시지를 결정합니다.
 - 프로그램의 출력을 표현하는 여러 가지 방법이 있습니다; 사람이 일기에 적합한 형태로 데이터를 인쇄할 수도 있고, 나중에 사용하기 위해 파일에 쓸 수도 있습니다.
 
+### `sys`
 - 값을 작성하는 두 가지 방법: 표현식 문과 [`print()`](https://docs.python.org/ko/3.12/library/functions.html#print “print”) 함수 외에 세 번째 방법은 파일 객체의 [`write()`](https://docs.python.org/ko/3.12/library/io.html#io.TextIOBase.write “io.TextIOBase.write”) 메서드를 사용하는 것인데, 표준 출력 파일은 `sys.stdout`으로 참조할 수 있습니다.
+
+```python
+import sys
+
+a = sys.stdin.readline()
+sys.stdout.write(a)
+```
+- 속도가 중요한 경우 `sys` 라이브러리의 `sys.stdin.readline`이나 `sys.stdin.write` 등을 활용할 수 있습니다.
+- `sys.stdin.readline()`은 입력된 줄의 끝에 있는 개행 문자(`\n`)를 포함하여 읽습니다. 따라서 `message` 변수에는 이미 끝에 '\n'이 포함되어 있습니다. 그 다음에 "??!"를 추가하면, 결과적으로 두 줄로 출력됩니다.
+- 이 문제를 해결하기 위해 `sys.stdout`의 메서드를 사용할 수 있습니다. 구체적으로 `sys.stdout.write()` 대신 `print()` 함수를 사용하거나, `sys.stdout.write()`를 계속 사용하되 개행 문자를 제거하는 방법이 있습니다.
+
+```python
+import sys
+
+message = sys.stdin.readline().rstrip('\n')  # rstrip('\n')으로 개행 문자 제거
+sys.stdout.write(message + "??!")
+```
+
+- `sys.stdout.write()` 사용: 이 메서드는 자동으로 개행하지 않습니다. 입력에서 개행 문자를 제거하면 원하는 결과를 얻을 수 있습니다.
+
 
 ## 파일 입출력
 

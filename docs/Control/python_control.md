@@ -10,7 +10,7 @@ tags:
   - Loop
   - if
   - match
-  - for
+  - For
   - while
   - break
   - continue

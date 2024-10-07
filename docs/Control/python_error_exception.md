@@ -523,5 +523,7 @@ Add some more information
     +------------------------------------
 ```
 
+[내장 예외 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/library/exceptions.html)
+
 ---
 ## 참조

@@ -538,5 +538,11 @@ $       ?       `
 ```
 
 
+[4. 실행 모델 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/executionmodel.html)
+
+[9. 최상위 요소들 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/toplevel_components.html)
+
+[10. 전체 문법 규격 — Python 3.12.5 문서](https://docs.python.org/ko/3.12/reference/grammar.html)
+
 ---
 ## 참조
