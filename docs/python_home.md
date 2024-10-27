@@ -32,10 +32,6 @@ link: https://docs.python.org/ko/3/
 ---
 > [[#코딩 스타일]]
 
-- [ ] [[python_library|라이브러리]]
-- [ ] 표현식
-- [ ] 언어 구조
-- [ ] 
 
 
 # Python 언어
